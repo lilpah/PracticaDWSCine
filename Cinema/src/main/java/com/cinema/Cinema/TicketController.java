@@ -10,7 +10,10 @@ public class TicketController {
     public String mainPage(){
         return "index";
     }
-
+    @GetMapping("/reviews")
+    public String reviews(){
+        return "reviews";
+    }
 
 
 
