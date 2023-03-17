@@ -1,4 +1,4 @@
-package com.cinema.Cinema;
+package com.cinema.Cinema.ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
