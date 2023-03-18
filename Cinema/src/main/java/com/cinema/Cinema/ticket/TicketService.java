@@ -15,10 +15,8 @@ public class TicketService {
     private Map<Long, Ticket> tickets = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
-     public TicketService(){
-         tickets.put((long)1, new Ticket("Creed", 24, "21:24", "3/03/2023"));
-         tickets.put((long)1, new Ticket("asdf", 14, "21:24", "3/03/2023"));
-     }
+
+
     public Collection<Ticket> getAll(){
         return tickets.values();
     }
@@ -30,8 +28,7 @@ public class TicketService {
         return ticket;
     }
 
-
-    @GetMapping("showTicket/{id}")
+    /*@GetMapping("showTicket/{id}")
     public String showTicket(Model model, @PathVariable Integer id){
         Ticket temp = tickets.get(id - 1);
         model.addAttribute("nameMovie", temp.getNameMovie());
@@ -39,7 +36,7 @@ public class TicketService {
         model.addAttribute("movieTime", temp.getMovieTime());
         model.addAttribute("movieDate", temp.getMovieDate());
         return "ticketsBooked";
-    }
+    }*/
 
 
 }
