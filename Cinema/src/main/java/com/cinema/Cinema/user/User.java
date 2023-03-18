@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.random.RandomGenerator;
 
 @Getter
@@ -21,6 +22,7 @@ public class User {
     private String surname;
     private String pass;
     private String email;
+    private AtomicLong lastTicketAdded;
     // private Boolean admin; -> When we are allowed to use databases, add
 
 
@@ -29,6 +31,7 @@ public class User {
         this.surname = surname;
         this.pass = pass;
         this.email = email;
+        this.lastTicketAdded = new AtomicLong();
     }
 
 

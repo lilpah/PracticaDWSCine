@@ -2,6 +2,7 @@ package com.cinema.Cinema.ticket;
 import lombok.*;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
@@ -12,7 +13,8 @@ public class Ticket {
     private int numSeat;
     private String movieTime;
     private String movieDate;
-    private int numTicketsByMovie = -1; // Count the  numbers of tickets a user buy by movie
+    private long idTicket; // Count the  numbers of tickets a user buy by movie
+
 
     public Ticket(String nameMovie, int numSeat, String movieTime, String movieDate) {
         this.nameMovie = nameMovie;
