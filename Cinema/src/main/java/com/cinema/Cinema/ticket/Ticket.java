@@ -1,4 +1,5 @@
 package com.cinema.Cinema.ticket;
+import com.cinema.Cinema.movie.Movie;
 import lombok.*;
 
 import java.util.Map;
@@ -9,15 +10,15 @@ import java.util.concurrent.atomic.AtomicLong;
 @Data
 @NoArgsConstructor
 public class Ticket {
-    private String nameMovie;
+    private long idMovie;
     private int numSeat;
     private String movieTime;
     private String movieDate;
     private long idTicket; // Count the  numbers of tickets a user buy by movie
 
 
-    public Ticket(String nameMovie, int numSeat, String movieTime, String movieDate) {
-        this.nameMovie = nameMovie;
+    public Ticket(long idMovie, int numSeat, String movieTime, String movieDate) {
+        this.idMovie = idMovie;
         this.numSeat = numSeat;
         this.movieTime = movieTime;
         this.movieDate = movieDate;
