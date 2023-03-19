@@ -47,16 +47,17 @@
 				 <h3 class="head">CONTACT</h3>
 				 <p>WE'RE ALWAYS HERE TO HELP YOU</p>
 				 <div class="contact-form">
-					 <form>
+					 <form id="form" action="" class="form">
 						 <div class="col-md-6 contact-left">
-							  <input type="text" placeholder="E-mail" required/>
+							  <input name="email" type="text" id="email" placeholder="E-mail" required/>
 						  </div>
 						  <div class="col-md-6 contact-right">
-							 <textarea placeholder="Message"></textarea>
-							 <input type="submit" value="SEND"/>
+							 <textarea id="message" placeholder="Message"></textarea>
+							 <button type="submit" class="btn_stly">SEND</button>
 						 </div>
 						 <div class="clearfix"></div>
 					 </form>
+					 <a hrfe="mailto:laCarteleraCine2.0@gmail.com" id="mail_pe">mail</a>
 				 </div>
 				 <div>
 					 <h3>Find Us Here</h3>
@@ -64,9 +65,23 @@
 						<div style="width: 100%"><iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=C.%20Oslo,%2053,%2028922%20Alcorc%C3%B3n,%20Madrid+(Cines%20URJC)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="600" frameborder="0"><a href="https://www.gps.ie/sport-gps/">swimming watch</a></iframe></div></div>
 
 				 </div>
+
 		</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	const $form = document.querySelector('#form')
+	const $buttonMailto = document.querySelector('#mail_pe')
+	$form.addEventListener('submit', handleSubmit)
+
+	function handleSubmit(event){
+		event.preventDefault()
+		const form = new FormData(this)
+		$buttonMailto.setAttribute('href', `mailto:laCarteleraCine2.0@gmail.com?subject=${form.get('email')}&body=${form.get('message')}`)
+		$buttonMailto.click()
+	}
+</script>
 </body>
 </html>

@@ -1763,6 +1763,23 @@ font-weight: 700;
 	}
 }
 
+#mail_pe{
+	opacity: 0;
+}
+
+#btn_stly{
+	 height: 45px;
+	 line-height: 45px;
+	 width: 30%;
+	 background: #000;
+	 color: #fff;
+	 font-weight: bold;
+	 border: none;
+	 border-radius: 3px;
+	 cursor: pointer;
+	 transition: .1s ease all;
+ }
+
 @media screen and (max-width: 640px) {
 	p.claim {
 		width: 85%;
@@ -1839,6 +1856,7 @@ font-weight: 700;
 	.contact-form {
 		margin-top: 2em;
 	}
+
 	.main-contact form input[type="text"], .main-contact form textarea {
 		padding: 8px 12px;
 		border: 2px solid #000;
