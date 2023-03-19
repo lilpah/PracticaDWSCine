@@ -12,17 +12,7 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
-    /*@GetMapping("/tickets/formTicket")
-    public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate){
-        Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
-        ticketService.createTicket(tmp);
-        return "ticketBookedCorrectly";
-    }*/
-    @GetMapping("/{id}/buyTickets")
-    public String selectId(Model model,@RequestParam Long id){
-        model.addAttribute("ident",id);
-        return "tickets";
-    }
+
 
 }
 
