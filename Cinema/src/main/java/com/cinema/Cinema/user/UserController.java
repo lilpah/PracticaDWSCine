@@ -1,5 +1,6 @@
 package com.cinema.Cinema.user;
 
+import com.cinema.Cinema.movie.Movie;
 import com.cinema.Cinema.ticket.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class UserController {
 
 
    @GetMapping("/user/{id}/formTicket")
-    public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate,@PathVariable Long id){
+    public String formTicket(Model model, @RequestParam long nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id){
         Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
