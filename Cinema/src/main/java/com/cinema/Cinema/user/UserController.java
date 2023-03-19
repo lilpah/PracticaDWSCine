@@ -22,7 +22,7 @@ public class UserController {
         model.addAttribute("users",temp);
         return "usersTable";
     }
-    @GetMapping("/showTickets/{id}")
+    @GetMapping("/id={id}/showTickets")
     public String showTickets(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
         Collection<Ticket> temp = user.allTickets();
@@ -30,11 +30,17 @@ public class UserController {
         return "ticketsUser";
     }
 
-   @GetMapping("/formTicket/{id}")
+   @GetMapping("/{id}/formTicket")
     public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate,@PathVariable Long id){
         Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
+    }
+
+    @GetMapping("/id={id}")
+    public String user(Model model,@PathVariable Long id){
+        model.addAttribute("name",userService.getUsers().get(id).getName());
+        return "userIndex";
     }
 
 }

@@ -42,10 +42,15 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <h4>Usuarios</h4>
-                <p>{{#users}}
-                    <a href="/user/{{-index}}"> <p>{{name}} {{pass}}</p> </a>  <!-- El -index devuelve el indice del elemento que esta iterando -->
-                {{/users}}</p>
+
+
+                <p>Welcome,{{name}}</p>
+                <p><a class="b-home" href="/{{id}}/buyTickets">Buy Ticket</a>
+                    <a class="b-home" href="id={{id}}/showTickets">SEE ALL MY TICKETS</a>
+                </p>
+
+
+                </p>
             </div>
             <div class="footer">
             </div>
