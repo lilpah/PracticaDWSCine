@@ -38,7 +38,6 @@ public class UserService {
         long id = lastIdTicket.incrementAndGet();
         ticket.setIdTicket(id);
         users.get(idUser).getTickets().put(id,ticket);
-
     }
 
 

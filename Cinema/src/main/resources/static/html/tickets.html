@@ -44,42 +44,38 @@
       <div class="error-404 text-center">
 
         <h3 class="head">ORDER A TICKET</h3>
-        <form action="../../templates/ticketsBooked.html" class="formulario" id="formulario">
+        <form action="/tickets/formTicket" class="formulario" id="formulario">
 
           <div class="formulario_grupo" id="grupo_name"> <!-- class="col-md-6 contact-middle"  -->
             <label for="name" class="formulario_label">Movie name</label>
             <div class="formulario_grupo-input">
-              <input type="text" class="formulario_input" name="name" id="name" placeholder="As Bestas">
+              <input type="text" class="formulario_input" name="nameMovie" id="name" placeholder="As Bestas" required>
               <i class="formulario_validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario_input-error">Movie name, can only contain letters. (Max. 20 letters)</p>
           </div>
 
           <div class="fromulario_grupop" id="grupo_number">
             <label for="number" class="formulario_label">Seat number</label>
             <div class="formulario_grupo-input">
-              <input type="text" class="formulario_input" name="number" id="number" placeholder="4"/>
+              <input type="text" class="formulario_input" name="numSeat" id="number" placeholder="4" required/>
               <i class="formulario_validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="fromulario_input-error">Seat number, can only contain numbers. 1-15</p>
           </div>
 
           <div class="fromulario_grupop" id="grupo_time">
             <label for="time" class="formulario_label">Movie time</label>
             <div class="formulario_grupo-input">
-              <input type="text" class="formulario_input" name="time" id="time" placeholder="21:15"/>
+              <input type="text" class="formulario_input" name="movieTime" id="time" placeholder="21:15" required/>
               <i class="formulario_validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="fromulario_input-error">Movie time, can only contain numbers and colons. (Max. 5 characters)</p>
           </div>
 
           <div class="fromulario_grupop" id="grupo_date">
             <label for="date" class="formulario_label">Movie date</label>
             <div class="formulario_grupo-input">
-              <input type="date" class="formulario_input" name="date" id="date" required pattern="\d{4}-\d{2}-\d{2}"/>
+              <input type="date" class="formulario_input" name="movieDate" id="date" required pattern="\d{4}-\d{2}-\d{2}"/>
               <i class="formulario_validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="fromulario_input-error">Movie date, can only contain numbers and colons. (Max. 10 characters)</p>
           </div>
 
           <div class="formulario_grupo" id="grupo_terminos">
@@ -95,13 +91,12 @@
 
           <div class="formulario_grupo formulario_grupo-btn-enviar">
             <button type="submit" class="b-home">Buy ticket</button>
-            <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Purchase made successfully!</p>
           </div>
 
 
           <div class="clearfix"></div>
         </form>
-        <a class="b-home" href="../ticketBookedCorrectly.html">Buy ticket</a>
+        <a class="b-home" href="../../templates/ticketBookedCorrectly.html">Buy ticket</a>
       </div>
 
     </div>
