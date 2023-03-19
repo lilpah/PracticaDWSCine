@@ -19,7 +19,7 @@ public class Movie {
     private String name;
     private String genre;
     private int numSeats = 100;
-    private long numMovies = -1;
+    private long idMovie = -1;
 
 
     public Movie(String name, String genre) {

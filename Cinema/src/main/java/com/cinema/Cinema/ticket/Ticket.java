@@ -1,6 +1,8 @@
 package com.cinema.Cinema.ticket;
 import com.cinema.Cinema.movie.Movie;
+import com.cinema.Cinema.user.UserService;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -9,9 +11,11 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 @Data
 @NoArgsConstructor
+
 public class Ticket {
     private long idMovie;
     private int numSeat;
+    public String nameMovie;
     private String movieTime;
     private String movieDate;
     private long idTicket; // Count the  numbers of tickets a user buy by movie

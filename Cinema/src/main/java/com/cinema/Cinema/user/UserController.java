@@ -1,6 +1,7 @@
 package com.cinema.Cinema.user;
 
 import com.cinema.Cinema.movie.Movie;
+import com.cinema.Cinema.movie.MovieService;
 import com.cinema.Cinema.ticket.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class UserController {
    @GetMapping("/user/{id}/buyTickets")
     public String buyTickets(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
+        model.addAttribute("movies",userService.getMovies().values());
         model.addAttribute("name",user.getName());
         return "tickets";
     }

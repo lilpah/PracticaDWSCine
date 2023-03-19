@@ -19,21 +19,20 @@ import java.util.concurrent.atomic.AtomicLong;
 @Getter
 public class UserService {
 
-    @Autowired
-    MovieService movieService;
+    private Map<Long, Movie> movies = new ConcurrentHashMap<>();
+    private AtomicLong lastMovie = new AtomicLong();
+
     private Map<Long, User> users = new ConcurrentHashMap<>(); // Long is for the id of each ticket that each user has
 
     private AtomicLong lastId = new AtomicLong();
-    private AtomicLong lastIdTicket = new AtomicLong();
+
 
 
     public UserService(){
         addUser(new User("nacho","chove","1234","tumadre@gamil"));
         addUser(new User("sanmi","panda","1234","tumadress@gamil"));
-        Movie creed = new Movie("Creed","Action");
-        Movie asBestas = new Movie("As bestas","Drama");
-        movieService.addMovie(creed);
-        movieService.addMovie(asBestas);
+        addMovie(new Movie("Creed","Action"));
+        addMovie(new Movie("As bestas","Drama"));
         addTicket(1, new Ticket(1, 24, "21:24", "3/03/2023"));
         addTicket(2, new Ticket(2, 14, "21:24", "3/03/2023"));
     }
@@ -44,9 +43,15 @@ public class UserService {
         users.put(id,user);
     }
     public void addTicket(long idUser, Ticket ticket){
-        long id = lastIdTicket.incrementAndGet();
+        long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
         users.get(idUser).getTickets().put(id,ticket);
-        movieService.getMoviesStorage().get(ticket.getIdMovie()).addTicket();
+        movies.get(ticket.getIdMovie()).addTicket();
+        ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
+    }
+    public void addMovie(Movie movie){
+        long idMovie = lastMovie.incrementAndGet();
+        movie.setIdMovie(idMovie);
+        movies.put(idMovie,movie);
     }
 
 

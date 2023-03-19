@@ -2,6 +2,7 @@ package com.cinema.Cinema.movie;
 
 import com.cinema.Cinema.ticket.Ticket;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 public class MovieService {
 
-    private Map<Long, Movie> moviesStorage = new ConcurrentHashMap<>();
-    private AtomicLong lastMovie = new AtomicLong();
 
-    public void addMovie(Movie movie){
-        if(movie.getNumMovies() == -1){
-            long idMovie = lastMovie.incrementAndGet();
-            movie.setNumMovies(idMovie);
-            moviesStorage.put(idMovie,movie);
-        }
+
+
+    public MovieService(){
+
     }
+
 
 }
