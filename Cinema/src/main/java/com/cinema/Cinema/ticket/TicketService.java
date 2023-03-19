@@ -16,17 +16,17 @@ public class TicketService {
     private AtomicLong lastId = new AtomicLong();
 
 
-
     public Collection<Ticket> getAll(){
         return tickets.values();
     }
 
-    public Ticket createTicket(Ticket ticket){
+    public void createTicket(Ticket ticket){
         long temp = lastId.incrementAndGet();
         ticket.setIdTicket(temp);
         tickets.put(temp, ticket);
-        return ticket;
     }
+
+    // Isma te recuerda que mires datables.net
 
     /*@GetMapping("showTicket/{id}")
     public String showTicket(Model model, @PathVariable Integer id){
