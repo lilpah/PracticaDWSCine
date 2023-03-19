@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 @Controller
 public class UserController {
@@ -22,7 +20,7 @@ public class UserController {
         model.addAttribute("users",temp);
         return "usersTable";
     }
-    @GetMapping("/id={id}/showTickets")
+    @GetMapping("/user/{id}/showTickets")
     public String showTickets(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
         Collection<Ticket> temp = user.allTickets();
@@ -30,17 +28,27 @@ public class UserController {
         return "ticketsUser";
     }
 
-   @GetMapping("/{id}/formTicket")
+   @GetMapping("/user/{id}/buyTickets")
+    public String buyTickets(Model model, @PathVariable Long id){
+        User user = userService.getUsers().get(id);
+        Collection<Ticket> temp = user.allTickets();
+        model.addAttribute("tickets",temp);
+        return "tickets";
+    }
+
+
+   @GetMapping("/user/{id}/formTicket")
     public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate,@PathVariable Long id){
         Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/user/{id}")
     public String user(Model model,@PathVariable Long id){
         model.addAttribute("name",userService.getUsers().get(id).getName());
         return "userIndex";
     }
+
 
 }
