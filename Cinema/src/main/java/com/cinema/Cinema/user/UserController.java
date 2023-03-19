@@ -30,11 +30,11 @@ public class UserController {
         return "ticketsUser";
     }
 
-   /*@GetMapping("/formTicket")
-    public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate){
+   @GetMapping("/formTicket/{id}")
+    public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate,@PathVariable Long id){
         Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
-        userService.addTicket(userService.getUsers().get(id), tmp);
+        userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
-    }*/
+    }
 
 }
