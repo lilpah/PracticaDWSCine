@@ -3,10 +3,10 @@
 <head>
 
     <title>LA CARTELERA</title>
-    <link href="../css/form.css" rel='stylesheet' type='text/css' />
-    <link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../static/css/form.css" rel='stylesheet' type='text/css' />
+    <link href="../static/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
-    <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
     <!-- <script src="js/jquery.min.js"></script> -->
     <!-- Custom Theme files -->
@@ -20,11 +20,11 @@
 <div class="full">
     <div class="menu">
         <ul>
-            <li><a href="/"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+            <li><a href="/static"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
             <!-- <li><a href="videos.html"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li> -->
-            <li><a href="../html/reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-            <li><a class="active" href="../html/tickets.html"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
-            <li><a href="../html/contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+            <li><a href="../static/html/reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+            <li><a class="active" href="/showUsers"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+            <li><a href="../static/html/contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
         </ul>
     </div>
     <div class="main">
@@ -46,7 +46,7 @@
                 <main>
 
                 <h3 class="head">ORDER A TICKET</h3>
-                <form action="/user/1/formTicket" class="formulario" id="formulario">
+                <form action="/user/{{id}}/formTicket" class="formulario" id="formulario">
 
                     <div class="formulario_grupo" id="grupo_name"> <!-- class="col-md-6 contact-middle"  -->
                         <label for="nameMovie" class="formulario_label">Movie name</label>

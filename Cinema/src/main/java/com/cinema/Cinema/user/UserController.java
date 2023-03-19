@@ -37,6 +37,7 @@ public class UserController {
     }
 
 
+
    @GetMapping("/user/{id}/formTicket")
     public String formTicket(Model model, @RequestParam String nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate,@PathVariable Long id){
         Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
