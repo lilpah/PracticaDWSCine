@@ -29,12 +29,21 @@ public class UserService {
 
 
     public UserService(){
-        addUser(new User("nacho","chove","1234","tumadre@gamil"));
-        addUser(new User("sanmi","panda","1234","tumadress@gamil"));
+        addUser(new User("User 1","Surname User 1","P@ssW0rd_1","user1@lacartelera.com"));
+        addUser(new User("User 2","Surname User 2","P@ssW0rd_2","user2@lacartelera.com"));
+        addUser(new User("User 3","Surname User 3","P@ssW0rd_3","user3@lacartelera.com"));
+
+
         addMovie(new Movie("Creed","Action"));
-        addMovie(new Movie("As bestas","Drama"));
+        addMovie(new Movie("Scream VI","Terror"));
+        addMovie(new Movie("Mari(dos)","Comedy"));
+        addMovie(new Movie("Watcher","Thriller"));
+        addMovie(new Movie("As bestas","Mystery"));
+
+
         addTicket(1, new Ticket(1, 24, "21:24", "3/03/2023"));
-        addTicket(2, new Ticket(2, 14, "21:24", "3/03/2023"));
+        addTicket(2, new Ticket(2, 14, "22:00", "5/03/2023"));
+        addTicket(3, new Ticket(3, 56, "15:30", "1/08/2023"));
     }
 
     public void addUser(User user){
