@@ -1,4 +1,12 @@
 @charset "utf-8";
+/* CSS Document */
+
+
+body {
+}
+
+p,h1,h2,h3,h4,h5 {
+}
 
 .textsala {
     font-size: 1.5em;
@@ -14,6 +22,106 @@
 .condicions {
 }
 
+.buto  {
+    background-color:#6C9B01;
+    font-weight: Bold;
+    text-transform: uppercase;
+    border: none;
+    color: #d8d8d8;
+    width: 184px;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.butoanterior {
+    background-color:#6C9B01;
+    font-weight: Bold;
+    text-transform: uppercase;
+    border: none;
+    color: #d8d8d8;
+    width: 120px;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+
+/* CSS Document */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+h3, .contentheading {
+    color: #EEEEEE ;
+    /*font-size: 1.6em;*/
+    background-color:#7F8BA3;
+    /*font-family: "Trebuchet MS", monaco, sans-serif;*/
+
+    font-style: normal;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+
+p strong{
+    color: #C7A136;
+}
+
+td {
+		margin-top: 0;
+		margin-bottom: 5px;
+		color : #111111;
+		font-weight : normal;
+		padding : 0px;
+	}
+
+
+th {
+    margin-bottom: 5px;
+    font-family: "Trebuchet MS", monaco, sans-serif;
+    font-size : 100%;
+    font-style : normal;
+    line-height : 1;
+    text-decoration : none;
+    color : #111111;
+    font-weight : bold;
+    margin : 0px;
+    padding : 0px;
+}
+
+a:link, a:hover, a:active {
+    color : #111;
+    text-decoration : none;
+    background-color : inherit;
+    text-decoration:underline;
+    margin : 2px;
+    padding : 2px;
+}
+
+tr, th, td, input {
+    padding:2px;
+    margin:2px;
+    border:none;
+}
+input {
+    border: none;
+    background-repeat : no-repeat;
+    background-position : center;
+    border-spacing: 0px;
+    margin-top:-0px;
+    margin-left:-0px;
+}
+
 td{
     height:35px;
     white-space: nowrap;
@@ -25,34 +133,65 @@ td{
 
     width:25px;
     height:30px;
-    /*	margin-top:-3px;  */
+    margin-top:-3px;
     background-color:#d8d8d8;
     border: none;
-    /*	background:url(../imagesv2/minus.jpg);*/
+    background:url(../images/minus.jpg);
 }
-
 .botonminus {
     width:25px;
     height:30px;
     background-color:#d8d8d8;
     border: none;
-    background:url("../images/minus.jpg");
+    background:url(../images/minus.jpg);
     background-repeat : no-repeat;
     background-position : center;
     cursor: pointer;
 }
-
-
 
 .botonnormal {
     width:25px;
     height:30px;
     /*	margin-top:-3px;  */
     background-color:#d8d8d8;
-    background-image: url("../images/am.bmp");
+    background-image: url(../images/amocupat.jpg);
     cursor: pointer;
 }
 
+.botonnormalocupat {
+    width:25px;
+    height:30px;
+    /*	margin-top:-3px; */
+    background-color:#d8d8d8;
+    background-image: url(../images/amocupat.jpg);
+}
+
+.botonnormalinhabilitat {
+    width:25px;
+    height:30px;
+    /*	margin-top:-3px; */
+    background-color:#d8d8d8;
+    background-image: url(../images/aminhabilitat.bmp);
+}
+
+.asientos{
+    text-align:center;}
+.comprar{
+    height:40px;
+    width:200px;
+    background-color:#036;
+    color:#FFFFFF;
+    vertical-align: center}
+
+.loader{
+    position:absolute;
+    height:220px;
+    width:200px;
+    background-color:#036;
+    color:#ff0000;}
+
+.pago{
+    text-align:center;}
 
 #contenedor{
     display: inline-block;	/* Es esencial para que se muestren los bloques en línea */
@@ -67,15 +206,15 @@ td{
 }
 
 .tdtop{
-    /*	vertical-align: top; */
+    	vertical-align: top;
 }
 
 .bloc{
-    /*	display: inline-block;	 Es esencial para que se muestren los bloques en línea */
+    display: inline-block;
     /*	vertical-align: middle;   */
     vertical-align: top;
 
-    /*	border: 1px solid #ffffff; */
+    border: 1px solid #ffffff;
     padding: 10px;
     margin: 5px;
 
@@ -94,7 +233,7 @@ td{
 .tooltip {
     position: relative;
     display: inline-block;
-    /*border-bottom: 1px dotted black;  If you want dots under the hoverable text */
+    border-bottom: 1px dotted black;
 }
 
 input {
@@ -155,4 +294,3 @@ span {
     max-width: 600px;
     vertical-align: middle;
 }
-
