@@ -54,6 +54,11 @@ public class UserService {
         movies.put(idMovie,movie);
     }
 
+    public void deleteTicket(long idUser, long idTicket){
+        long id = users.get(idUser).getTickets().get(idTicket).getIdMovie();
+        users.get(idUser).getTickets().remove(idTicket);
+        movies.get(id).deleteTicket();
+    }
 
 
 

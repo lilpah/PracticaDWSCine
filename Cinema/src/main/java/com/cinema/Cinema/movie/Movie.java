@@ -35,6 +35,7 @@ public class Movie {
     public void addTicket(){
         numSeats--;
     }
+    public void deleteTicket(){numSeats++;}
 
 
 

@@ -51,6 +51,14 @@ public class UserController {
         model.addAttribute("name",userService.getUsers().get(id).getName());
         return "userIndex";
     }
+    @GetMapping("/user/{id}/deleteTicket")
+    public String deleteTicket(@PathVariable Long id){
+        return "deleteATicket";
+    }
 
-
+    @GetMapping("/user/{id}/formDeleteTicket")
+    public String formDeleteTicket(@RequestParam long idTicket,@PathVariable long id){
+        userService.deleteTicket(id,idTicket);
+        return "ticketDeletedCorrectly";
+    }
 }
