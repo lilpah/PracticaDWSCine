@@ -28,6 +28,7 @@ public class UserService {
 
 
 
+
     public UserService(){
         addUser(new User("User 1","Surname User 1","P@ssW0rd_1","user1@lacartelera.com"));
         addUser(new User("User 2","Surname User 2","P@ssW0rd_2","user2@lacartelera.com"));
@@ -53,6 +54,7 @@ public class UserService {
     }
     public void addTicket(long idUser, Ticket ticket){
         long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
+        ticket.setIdTicket(id);
         users.get(idUser).getTickets().put(id,ticket);
         movies.get(ticket.getIdMovie()).addTicket();
         ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());

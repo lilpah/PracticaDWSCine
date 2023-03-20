@@ -52,12 +52,15 @@ public class UserController {
         return "userIndex";
     }
     @GetMapping("/user/{id}/deleteTicket")
-    public String deleteTicket(@PathVariable Long id){
+    public String deleteTicket(Model model,@PathVariable Long id){
+        User user = userService.getUsers().get(id);
+        Collection<Ticket> temp = user.allTickets();
+        model.addAttribute("tickets",temp);
         return "deleteATicket";
     }
 
-    @GetMapping("/user/{id}/formDeleteTicket")
-    public String formDeleteTicket(@RequestParam long idTicket,@PathVariable long id){
+    @GetMapping("/user/{id}/deleteTicket/{idTicket}")
+    public String formDeleteTicket(@PathVariable long idTicket,@PathVariable long id){
         userService.deleteTicket(id,idTicket);
         return "ticketDeletedCorrectly";
     }

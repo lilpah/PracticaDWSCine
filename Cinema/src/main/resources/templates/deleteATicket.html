@@ -5,10 +5,8 @@
     <title>LA CARTELERA</title>
 
     <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="../../css/map.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../../css/form.css" rel="stylesheet" type="text/css" />
     <!-- Custom Theme files -->
     <!-- <script src="js/jquery.min.js"></script> -->
     <!-- Custom Theme files -->
@@ -44,19 +42,11 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <main>
-
-                    <form action="/user/{{id}}/formDeleteTicket" class="formulario" id="formulario">
-
-                        <div class="formulario_grupo" id="grupo_number">
-                            <label for="number" class="formulario_label">Delete ticket</label>
-                            <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input" name="idTicket" id="number" placeholder="4" required/>
-                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
-                            </div>
-                        </div>
-                        </form>
-                </main>
+                <h4>Select the ticket to remove:</h4>
+                <p>{{#tickets}}
+                    <p><a href="/user/{{id}}/deleteTicket/{{idTicket}}"> {{-index}}: {{nameMovie}} Number seat: {{numSeat}}</a></p>
+                {{/tickets}}
+                </p>
 
             </div>
             <div class="footer">
