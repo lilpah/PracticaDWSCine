@@ -4,9 +4,10 @@
 
     <title>LA CARTELERA</title>
 
-    <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../css/form.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
-    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
     <!-- <script src="js/jquery.min.js"></script> -->
     <!-- Custom Theme files -->
@@ -15,6 +16,46 @@
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
+<style>
+    .content-table{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 2em;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .content-table thead tr{
+        background-color: #99FFFF;;
+        color: #0b0b0b;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .content-table th,
+    .content-table td {
+        padding: 10px 30px;
+    }
+
+    .content-table tbody tr{
+        border-bottom: 1px solid #1B242F;
+    }
+
+    .content-table tbody tr:nth-of-type(even){
+        background-color: #F3F3F3;
+    }
+
+    .content-table tbody tr:last-of-type{
+        border-bottom: 4px solid #99FFFF;;
+    }
+
+    .content-table tbody tr.active-row{
+        font-weight: bold;
+        color: #245269;
+    }
+</style>
 <body>
 <!-- header-section-starts -->
 <div class="full">
@@ -42,15 +83,26 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <h4>Tickets:</h4>
-                <p>{{#tickets}}
-                <p> {{-index}}: {{nameMovie}} Number seat: {{numSeat}} </p>  <!-- El -index devuelve el indice del elemento que esta iterando -->
-                {{/tickets}}
-                </p>
-                <p>
-                    <a class="b-home" href="/user/{{id}}/deleteTicket">REMOVE TICKET</a>
-                    <a class="b-home" href="/user/{{id}}">BACK TO USER</a>
-                </p>
+                <main>
+                    <h3 class="head">CHOOSE AN USER TO DELETE</h3>
+                    <table class="content-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>User_ID</th>
+                            <th>Email</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#users}}<tr class="active-row">
+                            <td><a href="/deleteUsers/{{id}}"> {{name}}</a></td>
+                            <td><a href="/deleteUsers/{{id}}">{{id}}</a></td>
+                            <td><a href="/deleteUsers/{{id}}">{{email}}</a></td>
+                        </tr>{{/users}}
+                        </tbody>
+                    </table>
+                </main>
             </div>
             <div class="footer">
             </div>

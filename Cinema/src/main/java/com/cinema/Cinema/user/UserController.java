@@ -64,4 +64,40 @@ public class UserController {
         userService.deleteTicket(id,idTicket);
         return "ticketDeletedCorrectly";
     }
+
+    @GetMapping("/user/{id}/modifyTicket/{idTicket}")
+    public String modifyTicket(Model model,@PathVariable long idTicket,@PathVariable long id){
+        model.addAttribute("numSeat",userService.getUsers().get(id).getTickets().get(idTicket).getNumSeat());
+        model.addAttribute("movies",userService.getMovies());
+        model.addAttribute("movieTime",userService.getUsers().get(id).getTickets().get(idTicket).getMovieTime());
+        model.addAttribute("movieDate",userService.getUsers().get(id).getTickets().get(idTicket).getMovieDate());
+        return "modifyATicket";
+    }
+
+    @GetMapping("/deleteUsers")
+    public String deleteUsers(Model model){
+        Collection<User> temp = userService.getUsers().values();
+        model.addAttribute("users",temp);
+        return "deleteUsers";
+    }
+
+    @GetMapping("/deleteUsers/{id}")
+    public String deleteUser(Model model, @PathVariable Long id){
+        model.addAttribute("user",userService.getUsers().get(id).getName());
+        userService.deleteUser(id);
+        return "userDeleted";
+    }
+    @GetMapping("/addUsers")
+    public String addUser(Model model){
+        Collection<User> temp = userService.getUsers().values();
+        model.addAttribute("users",temp);
+        return "addUsers";
+    }
+
+    @GetMapping("/userAdded")
+    public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
+        userService.addUser(new User(name,surname,pass,email));
+        model.addAttribute("user",name);
+        return "userAdded";
+    }
 }

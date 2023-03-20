@@ -96,12 +96,14 @@
                         </thead>
                         <tbody>
                         {{#users}}<tr class="active-row">
-                            <td><a href="/user/{{-index}}"> {{name}}</a></td>
-                            <td><a href="/user/{{-index}}">{{id}}</a></td>
-                            <td><a href="/user/{{-index}}">{{email}}</a></td>
+                            <td><a href="/user/{{id}}"> {{name}}</a></td>
+                            <td><a href="/user/{{id}}">{{id}}</a></td>
+                            <td><a href="/user/{{id}}">{{email}}</a></td>
                         </tr>{{/users}}
                         </tbody>
                     </table>
+                    <a class="b-home" href="/deleteUsers">DELETE USER</a>
+                    <a class="b-home" href="/addUsers">ADD USER</a>
                 </main>
             </div>
             <div class="footer">
