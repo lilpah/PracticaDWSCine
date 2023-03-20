@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.xml.transform.sax.SAXResult;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,6 +53,16 @@ public class UserService {
         user.setId(id);
         users.put(id,user);
     }
+
+    public void deleteUser(long id){
+        lastId.decrementAndGet();
+        users.remove(id);
+    }
+
+    public void modifyUser(long id, User user){
+        users.put(id, user);
+    }
+
     public void addTicket(long idUser, Ticket ticket){
         long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
         ticket.setIdTicket(id);
@@ -59,16 +70,26 @@ public class UserService {
         movies.get(ticket.getIdMovie()).addTicket();
         ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
     }
-    public void addMovie(Movie movie){
-        long idMovie = lastMovie.incrementAndGet();
-        movie.setIdMovie(idMovie);
-        movies.put(idMovie,movie);
+
+
+    public void modifyTicket(long idUser, Ticket ticket){
+        users.get(idUser).getTickets().put(ticket.getIdTicket(), ticket);
+        movies.get(ticket.getIdMovie()).addTicket();
+        ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
     }
+
 
     public void deleteTicket(long idUser, long idTicket){
         long id = users.get(idUser).getTickets().get(idTicket).getIdMovie();
         users.get(idUser).getTickets().remove(idTicket);
         movies.get(id).deleteTicket();
+    }
+
+
+    public void addMovie(Movie movie){
+        long idMovie = lastMovie.incrementAndGet();
+        movie.setIdMovie(idMovie);
+        movies.put(idMovie,movie);
     }
 
 
