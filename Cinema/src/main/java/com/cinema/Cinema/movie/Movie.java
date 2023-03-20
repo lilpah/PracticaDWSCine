@@ -19,6 +19,7 @@ public class Movie {
     private String name;
     private String genre;
     private int numSeats = 100;
+    private int numTickets=0;
     private long idMovie = -1;
 
 
@@ -34,9 +35,11 @@ public class Movie {
 
     public void addTicket(){
         numSeats--;
+        numTickets++;
     }
     public void deleteTicket(){
         numSeats++;
+        numTickets--;
     }
 
 
