@@ -26,17 +26,9 @@ public class TicketService {
         tickets.put(temp, ticket);
     }
 
+
+
+
     // Isma te recuerda que mires datables.net
-
-    /*@GetMapping("showTicket/{id}")
-    public String showTicket(Model model, @PathVariable Integer id){
-        Ticket temp = tickets.get(id - 1);
-        model.addAttribute("nameMovie", temp.getNameMovie());
-        model.addAttribute("numSeat", temp.getNumSeat());
-        model.addAttribute("movieTime", temp.getMovieTime());
-        model.addAttribute("movieDate", temp.getMovieDate());
-        return "ticketsBooked";
-    }*/
-
 
 }
