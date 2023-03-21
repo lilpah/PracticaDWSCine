@@ -17,10 +17,15 @@ public class UserRESTController {
         return userService.getUsers().get(id);
     }
 
+    @PostMapping("/user/{id}")
+    public User getUser2(@PathVariable long id){
+        return userService.getUsers().get(id);
+    }
+
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
         if(userService.getUsers() == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             userService.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -37,8 +42,8 @@ public class UserRESTController {
 
     @PostMapping("/createUser")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser2(@RequestBody String name, @RequestBody String surname, @RequestBody String pass, @RequestBody String email){
-        userService.addUser(new User(name,surname,pass,email));
+    public void createUser2(@RequestBody String name, @RequestBody User user){
+        userService.addUser(user);
     }
 
 
@@ -48,11 +53,17 @@ public class UserRESTController {
         return userService.getUsers().toString();
     }
 
-    @PutMapping("/user/{id}/modifyUser")
+    @PostMapping("/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
-    public void showAllUsers(@PathVariable long id, @RequestBody String name, @RequestBody String surname, @RequestBody String pass, @RequestBody String email){
-        User user = new User(name, surname, pass, email);
-        userService.getUsers().put(id, user);
+    public String showAllUsers2(){
+        return userService.getUsers().toString();
+    }
+
+    @PutMapping("updateUser/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void showAllUsers(@PathVariable long id, @RequestBody User updateUser){
+      //  User user = new User(name, surname, pass, email);
+        userService.getUsers().put(id, updateUser);
     }
 
 }

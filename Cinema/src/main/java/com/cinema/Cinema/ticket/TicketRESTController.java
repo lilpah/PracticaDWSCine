@@ -19,22 +19,25 @@ public class TicketRESTController {
 
     @GetMapping("/user/{id}/buyTicket")
     @ResponseStatus(HttpStatus.CREATED)
-    public String buyTicket(Model model, @RequestParam long nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id) {
-        Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
+    public String buyTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
+        Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return userService.getUsers().get(id).allTickets().toString();
     }
 
-    @PostMapping("/user/{id}/buyTicket")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void buyTicket2(Model model, @RequestBody long nameMovie, @RequestBody int numSeat, @RequestBody String movieTime, @RequestBody String movieDate, @PathVariable Long id) {
-        Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
-        userService.addTicket(id, tmp);
-        //return userService.getUsers().get(id).allTickets().toString();
+    @PostMapping("/user/{id}/showTickets")
+    public ResponseEntity<Collection<Ticket>> showTickets2(Model model, @PathVariable long id) {
+        if(userService.getUsers().get(id).getTickets() == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        User user = userService.getUsers().get(id);
+        Collection<Ticket> temp = user.allTickets();
+        model.addAttribute("tickets", temp);
+        return new ResponseEntity<>(user.allTickets(), HttpStatus.OK);
     }
 
     @GetMapping("/user/{id}/showTickets")
-    public ResponseEntity<Collection<Ticket>> showTickets(Model model, @PathVariable Long id) {
+    public ResponseEntity<Collection<Ticket>> showTickets(Model model, @PathVariable long id) {
         if(userService.getUsers().get(id).getTickets() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -43,19 +46,6 @@ public class TicketRESTController {
         model.addAttribute("tickets", temp);
         return new ResponseEntity<>(user.allTickets(), HttpStatus.OK);
     }
-
-
-    @PostMapping("/user/{id}/showTickets")
-    public ResponseEntity<Collection<Ticket>> showTickets2(Model model, @PathVariable Long id) {
-        if(userService.getUsers().get(id).getTickets() == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        User user = userService.getUsers().get(id);
-        Collection<Ticket> temp = user.allTickets();
-        model.addAttribute("tickets", temp);
-        return new ResponseEntity<>(user.allTickets(), HttpStatus.OK);
-    }
-
 
 
    @DeleteMapping("/user/{id}/deleteTicket/{idTicket}")
@@ -66,16 +56,16 @@ public class TicketRESTController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
     @PutMapping("/user/{id}/modifiyTicket/{idTicket}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void modifyTicket(Model model, @RequestParam long nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id, @PathVariable Long idTicket) {
-        Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
-        userService.modifyTicket(id, tmp);
+    public void modifyTicket(Model model, @PathVariable long id, @PathVariable long idTicket, @RequestParam Ticket updateTicket) {
+        //Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
+        userService.modifyTicket(id, updateTicket);
         //return userService.getUsers().get(id).allTickets().toString();
     }
 

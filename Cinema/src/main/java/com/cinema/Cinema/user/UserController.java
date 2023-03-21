@@ -40,19 +40,19 @@ public class UserController {
 
 
    @GetMapping("/user/{id}/formTicket")
-    public String formTicket(Model model, @RequestParam long nameMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id){
-        Ticket tmp = new Ticket(nameMovie, numSeat, movieTime, movieDate);
+    public String formTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id){
+        Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
     }
 
     @GetMapping("/user/{id}")
-    public String user(Model model,@PathVariable Long id){
+    public String user(Model model, @PathVariable Long id){
         model.addAttribute("name",userService.getUsers().get(id).getName());
         return "userIndex";
     }
     @GetMapping("/user/{id}/deleteTicket")
-    public String deleteTicket(Model model,@PathVariable Long id){
+    public String deleteTicket(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
         Collection<Ticket> temp = user.allTickets();
         model.addAttribute("tickets",temp);
@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/deleteTicket/{idTicket}")
-    public String formDeleteTicket(@PathVariable long idTicket,@PathVariable long id){
+    public String formDeleteTicket(@PathVariable long idTicket, @PathVariable long id){
         userService.deleteTicket(id,idTicket);
         return "ticketDeletedCorrectly";
     }
