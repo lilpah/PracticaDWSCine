@@ -44,7 +44,6 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <main>
                 <div id="contenedor">
                     <table>
                         <tr>
@@ -416,6 +415,7 @@
                         </tr>
                     </table>
                 </div>
+                <main>
 
                     <p><h3 class="head">ORDER A TICKET:</h3>
                     <form action="/user/{{id}}/formTicket" class="formulario" id="formulario">
@@ -424,7 +424,7 @@
                             <label for="nameMovie" class="formulario_label">Movie name</label>
                             <div class="formulario_grupo-input">
                                 <select class="formulario_input" name="idMovie" id="nameMovie">
-                                    <option value="select">Select an option</option>
+                                    <option value="select">[Select an option]</option>
                                     {{#movies}}
                                     <option value="{{idMovie}}">{{name}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Available Tickets:{{numSeats}}</option>
                                     {{/movies}}
@@ -437,8 +437,7 @@
                         <div class="formulario_grupo" id="grupo_number">
                             <label for="number" class="formulario_label">Seat number</label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input" name="numSeat" id="number" placeholder="4" required/>
-                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                <input type="number" class="formulario_input" name="numSeat" id="number" placeholder="4" min="1" max="100" required />
                             </div>
                         </div>
 
@@ -484,5 +483,6 @@
         </div>
     </div>
 </div>
+<script src="../../js/mapBut.js"></script>
 </body>
 </html>

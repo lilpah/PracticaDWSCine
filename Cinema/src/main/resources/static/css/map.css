@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
+
 
 .ticket_right{
     text-align: right;
@@ -60,20 +60,10 @@ p,h1,h2,h3,h4,h5 {
 }
 
 
-/* CSS Document */
+
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-h3, .contentheading {
-    color: #EEEEEE ;
-    /*font-size: 1.6em;*/
-    background-color:#7F8BA3;
-    /*font-family: "Trebuchet MS", monaco, sans-serif;*/
-
-    font-style: normal;
-    margin-bottom: 5px;
-    text-align: center;
-}
 
 
 p strong{
@@ -155,16 +145,16 @@ td{
 .botonnormal {
     width:25px;
     height:30px;
-    /*	margin-top:-3px;  */
+
     background-color:#d8d8d8;
-    background-image: url(../images/amocupat.jpg);
+    background-image: url(../images/am.bmp);
     cursor: pointer;
 }
 
 .botonnormalocupat {
     width:25px;
     height:30px;
-    /*	margin-top:-3px; */
+
     background-color:#d8d8d8;
     background-image: url(../images/amocupat.jpg);
 }
@@ -172,7 +162,7 @@ td{
 .botonnormalinhabilitat {
     width:25px;
     height:30px;
-    /*	margin-top:-3px; */
+
     background-color:#d8d8d8;
     background-image: url(../images/aminhabilitat.bmp);
 }
@@ -197,8 +187,8 @@ td{
     text-align:center;}
 
 #contenedor{
-    display: inline-block;	/* Es esencial para que se muestren los bloques en línea */
-    /*	width:700px; */
+    display: inline-block;
+
     margin-left:auto;
     margin-right:auto;
     vertical-align: top;
@@ -214,25 +204,20 @@ td{
 
 .bloc{
     display: inline-block;
-    /*	vertical-align: middle;   */
+
     vertical-align: top;
 
     border: 1px solid #ffffff;
     padding: 10px;
     margin: 5px;
 
-    /*	width:90px;
-        height:200px;
-        background-color:#000000;
-        top:350px;
-        right:-20px;
-        position:absolute;*/
+
 }
 #tiposasiento{
 
 }
 
-/* Tooltip container */
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -250,7 +235,7 @@ span {
 
 }
 
-/* Tooltip text */
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 100px;
@@ -260,7 +245,6 @@ span {
     padding: 5px 0;
     border-radius: 6px;
 
-    /* Position the tooltip text */
     position: absolute;
     z-index: 1;
     top: 125%;
@@ -269,12 +253,12 @@ span {
 
     cursor: pointer;
 
-    /* Fade in tooltip */
+
     opacity: 0;
     transition: opacity 0.5s;
 }
 
-/* Tooltip arrow */
+
 .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
@@ -286,7 +270,7 @@ span {
     border-color: transparent transparent #9E2D35 transparent;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
@@ -297,3 +281,7 @@ span {
     max-width: 600px;
     vertical-align: middle;
 }
+
+
+
+
