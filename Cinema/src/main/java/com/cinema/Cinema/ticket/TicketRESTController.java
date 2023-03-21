@@ -28,7 +28,7 @@ public class TicketRESTController {
     @PostMapping("/user/{id}/showTickets")
     public ResponseEntity<Collection<Ticket>> showTickets2(Model model, @PathVariable long id) {
         if(userService.getUsers().get(id).getTickets() == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         User user = userService.getUsers().get(id);
         Collection<Ticket> temp = user.allTickets();
@@ -61,13 +61,21 @@ public class TicketRESTController {
 
     }
 
-    @PutMapping("/user/{id}/modifiyTicket/{idTicket}")
+    @PutMapping("/user/{id}/updateTicket/{idTicket}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void modifyTicket(Model model, @PathVariable long id, @PathVariable long idTicket, @RequestParam Ticket updateTicket) {
+    public ResponseEntity<Ticket> setUpdateTicket(Model model, @PathVariable long id, @PathVariable long idTicket, @RequestBody Ticket updateTicket) {
         //Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
-        userService.modifyTicket(id, updateTicket);
         //return userService.getUsers().get(id).allTickets().toString();
+        if(userService.getUsers().get(id).getTickets().get(idTicket) != null) {
+            userService.modifyTicket(id, updateTicket);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+
 
 
 }

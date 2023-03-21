@@ -24,7 +24,7 @@ public class UserRESTController {
 
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        if(userService.getUsers() == null){
+        if(userService.getUsers().get(id).getId() == -1){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             userService.deleteUser(id);
@@ -60,10 +60,16 @@ public class UserRESTController {
     }
 
     @PutMapping("updateUser/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void showAllUsers(@PathVariable long id, @RequestBody User updateUser){
+    public ResponseEntity<User> showAllUsers(@PathVariable long id, @RequestBody User updateUser){
       //  User user = new User(name, surname, pass, email);
-        userService.getUsers().put(id, updateUser);
+        if(userService.getUsers().get(id).getId() != -1) {
+            return new ResponseEntity<>(userService.getUsers().put(id, updateUser), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
+
 
 }
