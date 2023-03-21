@@ -42,14 +42,12 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <h4>Tickets:</h4>
+                <h4>Choose a ticket to modify:</h4>
                 <p>{{#tickets}}
-                <p> {{-index}}: {{nameMovie}} Number seat: {{numSeat}} </p>  <!-- El -index devuelve el indice del elemento que esta iterando -->
+                <a href="/user/{{id}}/modifyTicket/{{idTicket}}"> {{-index}}: {{nameMovie}} Number seat: {{numSeat}} </a>  <!-- El -index devuelve el indice del elemento que esta iterando -->
                 {{/tickets}}
                 </p>
                 <p>
-                    <a class="b-home" href="/user/{{id}}/deleteTicket">REMOVE TICKET</a>
-                    <a class="b-home" href="/user/{{id}}/modifyTicket/1">MODIFY TICKET</a>
                     <a class="b-home" href="/user/{{id}}">BACK TO USER</a>
                 </p>
             </div>

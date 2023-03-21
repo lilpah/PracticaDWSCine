@@ -65,13 +65,29 @@ public class UserController {
         return "ticketDeletedCorrectly";
     }
 
+
+    @GetMapping("/user/{id}/modifyTicket")
+    public String modifyTickets(Model model, @PathVariable Long id){
+        User user = userService.getUsers().get(id);
+        Collection<Ticket> temp = user.allTickets();
+        model.addAttribute("tickets",temp);
+        return "modifyTickets";
+    }
     @GetMapping("/user/{id}/modifyTicket/{idTicket}")
     public String modifyTicket(Model model,@PathVariable long idTicket,@PathVariable long id){
         model.addAttribute("numSeat",userService.getUsers().get(id).getTickets().get(idTicket).getNumSeat());
-        model.addAttribute("movies",userService.getMovies());
+        model.addAttribute("idMovie",userService.getUsers().get(id).getTickets().get(idTicket).getIdMovie());
+        model.addAttribute("nameMovie",userService.getMovies().get(userService.getUsers().get(id).getTickets().get(idTicket).getIdMovie()).getName());
         model.addAttribute("movieTime",userService.getUsers().get(id).getTickets().get(idTicket).getMovieTime());
         model.addAttribute("movieDate",userService.getUsers().get(id).getTickets().get(idTicket).getMovieDate());
         return "modifyATicket";
+    }
+    @GetMapping("/user/{id}/formTicket/{idTicket}")
+    public String formTicket(@RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id,@PathVariable Long idTicket){
+        userService.getUsers().get(id).getTickets().get(idTicket).setNumSeat(numSeat);
+        userService.getUsers().get(id).getTickets().get(idTicket).setMovieTime(movieTime);
+        userService.getUsers().get(id).getTickets().get(idTicket).setMovieDate(movieDate);
+        return "ticketsModified";
     }
 
     @GetMapping("/deleteUsers")
@@ -99,5 +115,23 @@ public class UserController {
         userService.addUser(new User(name,surname,pass,email));
         model.addAttribute("user",name);
         return "userAdded";
+    }
+
+    @GetMapping("/user/{id}/modifyUser")
+    public String modifyUser(Model model, @PathVariable Long id){
+        model.addAttribute("name",userService.getUsers().get(id).getName());
+        model.addAttribute("surname",userService.getUsers().get(id).getSurname());
+        model.addAttribute("pass",userService.getUsers().get(id).getPass());
+        model.addAttribute("email",userService.getUsers().get(id).getEmail());
+        return "modifyUser";
+    }
+
+    @GetMapping("/user/{id}/userModified")
+    public String userModified(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@PathVariable Long id){
+        userService.getUsers().get(id).setName(name);
+        userService.getUsers().get(id).setSurname(surname);
+        userService.getUsers().get(id).setPass(pass);
+        model.addAttribute("name",userService.getUsers().get(id).getName());
+        return "userModified";
     }
 }
