@@ -23,6 +23,14 @@ public class TicketRESTController {
         Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return userService.getUsers().get(id).allTickets().toString();
+
+    }
+
+    @PostMapping("/user/{id}/buyTicket")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String buyTicket2(Model model, @RequestBody Ticket ticket, @PathVariable long id) {
+        userService.addTicket(id, ticket);
+        return userService.getUsers().get(id).allTickets().toString();
     }
 
     @PostMapping("/user/{id}/showTickets")
@@ -67,7 +75,7 @@ public class TicketRESTController {
         //Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         //return userService.getUsers().get(id).allTickets().toString();
         if(userService.getUsers().get(id).getTickets().get(idTicket) != null) {
-            userService.modifyTicket(id, updateTicket);
+            userService.modifyTicket(id, updateTicket, userService.getUsers().get(id).getTickets().get(idTicket));
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else{

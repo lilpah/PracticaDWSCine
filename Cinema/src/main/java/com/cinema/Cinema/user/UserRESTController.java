@@ -42,10 +42,9 @@ public class UserRESTController {
 
     @PostMapping("/createUser")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser2(@RequestBody String name, @RequestBody User user){
+    public void createUser2(@RequestBody User user){
         userService.addUser(user);
     }
-
 
     @GetMapping("/showAllUsers")
     @ResponseStatus(HttpStatus.OK)

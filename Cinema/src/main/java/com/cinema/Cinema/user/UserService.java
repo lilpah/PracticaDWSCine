@@ -72,10 +72,10 @@ public class UserService {
     }
 
 
-    public void modifyTicket(long idUser, Ticket ticket){
-        users.get(idUser).getTickets().put(ticket.getIdTicket(), ticket);
-        movies.get(ticket.getIdMovie()).addTicket();
-        ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
+    public void modifyTicket(long idUser, Ticket newticket, Ticket ticket){
+        users.get(idUser).getTickets().put(ticket.getIdTicket(), newticket);
+        //movies.get(ticket.getIdMovie()).addTicket();
+        newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
     }
 
 
