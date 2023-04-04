@@ -1,11 +1,5 @@
-package com.cinema.Cinema.ticket;
-import com.cinema.Cinema.movie.Movie;
-import com.cinema.Cinema.user.UserService;
+package com.cinema.Cinema.entities;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter

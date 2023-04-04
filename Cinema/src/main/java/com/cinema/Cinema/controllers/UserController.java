@@ -1,8 +1,7 @@
-package com.cinema.Cinema.user;
+package com.cinema.Cinema.controllers;
 
-import com.cinema.Cinema.movie.Movie;
-import com.cinema.Cinema.movie.MovieService;
-import com.cinema.Cinema.ticket.Ticket;
+import com.cinema.Cinema.entities.User;
+import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

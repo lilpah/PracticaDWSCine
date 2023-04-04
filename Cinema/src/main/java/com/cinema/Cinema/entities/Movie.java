@@ -1,15 +1,9 @@
-package com.cinema.Cinema.movie;
+package com.cinema.Cinema.entities;
 
-import com.cinema.Cinema.ticket.Ticket;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter

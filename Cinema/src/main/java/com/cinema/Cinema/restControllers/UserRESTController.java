@@ -1,5 +1,7 @@
-package com.cinema.Cinema.user;
+package com.cinema.Cinema.restControllers;
 
+import com.cinema.Cinema.entities.User;
+import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

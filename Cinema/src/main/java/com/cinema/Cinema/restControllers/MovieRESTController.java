@@ -1,11 +1,8 @@
-package com.cinema.Cinema.movie;
+package com.cinema.Cinema.restControllers;
 
-import com.cinema.Cinema.ticket.Ticket;
-import com.cinema.Cinema.user.UserService;
-import lombok.Getter;
+import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

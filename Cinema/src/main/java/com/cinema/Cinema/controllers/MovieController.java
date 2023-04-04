@@ -1,4 +1,4 @@
-package com.cinema.Cinema.movie;
+package com.cinema.Cinema.controllers;
 
 import org.springframework.stereotype.Controller;
 

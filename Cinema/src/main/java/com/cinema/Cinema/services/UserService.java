@@ -1,17 +1,11 @@
-package com.cinema.Cinema.user;
+package com.cinema.Cinema.services;
 
-import com.cinema.Cinema.movie.Movie;
-import com.cinema.Cinema.movie.MovieService;
-import com.cinema.Cinema.ticket.Ticket;
+import com.cinema.Cinema.entities.Movie;
+import com.cinema.Cinema.entities.Ticket;
+import com.cinema.Cinema.entities.User;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.xml.transform.sax.SAXResult;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;

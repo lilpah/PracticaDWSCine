@@ -1,12 +1,12 @@
-package com.cinema.Cinema.user;
+package com.cinema.Cinema.entities;
 
-import com.cinema.Cinema.ticket.Ticket;
+import com.cinema.Cinema.entities.Ticket;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.*;
+import javax.persistence.Entity;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 @Data
 @NoArgsConstructor
+@Entity
 public class User {
 
     private String name;
