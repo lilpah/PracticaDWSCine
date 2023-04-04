@@ -1,4 +1,7 @@
 package com.cinema.Cinema.repositories;
 
-public interface TicketRepository implements extends JpaRepository<Ticket,Long>{
+import com.cinema.Cinema.entities.Ticket;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TicketRepository extends JpaRepository<Ticket,Long> {
 }

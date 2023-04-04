@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,19 +31,16 @@ public class User {
     private AtomicLong lastTicketAdded;
     // private Boolean admin; -> When we are allowed to use databases, add
 
-    private Map<Long,Ticket> tickets;
+    @OneToMany
+    private List<Ticket> tickets = new ArrayList<>();
     public User(String name, String surname, String pass, String email) {
         this.name = name;
         this.surname = surname;
         this.pass = pass;
         this.email = email;
         this.lastTicketAdded = new AtomicLong();
-        this.tickets = new ConcurrentHashMap<>();
     }
 
-    public Collection<Ticket> allTickets(){
-        return this.tickets.values();
-    }
 
 
 
