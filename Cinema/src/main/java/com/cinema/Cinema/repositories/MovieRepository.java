@@ -1,4 +1,4 @@
 package com.cinema.Cinema.repositories;
 
-public interface MovieRepository {
+public interface MovieRepository extends JpaRepository<Movie,Long>{
 }
