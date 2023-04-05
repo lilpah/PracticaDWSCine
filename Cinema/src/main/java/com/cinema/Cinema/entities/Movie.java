@@ -1,12 +1,14 @@
 package com.cinema.Cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,9 +21,17 @@ public class Movie {
     private int numSeats = 100;
     private int numTickets=0;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long idMovie = -1;
 
 
+    @OneToMany(cascade = CascadeType.DETACH,mappedBy = "movie")
+    @JsonIgnore
+    private List<Ticket> ticketsList=new ArrayList<>();
+
+    @ManyToMany(mappedBy = "movies")
+    @JsonIgnore
+    private List<User> users=new ArrayList<>();
     public Movie(String name, String genre) {
         this.name = name;
         this.genre = genre;
