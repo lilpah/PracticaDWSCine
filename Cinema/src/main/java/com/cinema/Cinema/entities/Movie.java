@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name="movies")
 public class Movie {
     private String name;
     private String genre;

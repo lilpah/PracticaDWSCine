@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name="tickets")
 public class Ticket {
     private long idMovie;
     private int numSeat;

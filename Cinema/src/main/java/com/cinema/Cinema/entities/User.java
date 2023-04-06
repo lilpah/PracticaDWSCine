@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="User")
+@Table(name="users")
 public class User {
 
     private String name;

@@ -2,6 +2,7 @@ package com.cinema.Cinema.controllers;
 
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
+import com.cinema.Cinema.repositories.TicketRepository;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ public class TicketController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    TicketRepository ticketRepository;
 
     @GetMapping("/user/{id}/deleteTicket")
     public String deleteTicket(Model model, @PathVariable Long id){
@@ -29,6 +32,7 @@ public class TicketController {
     @GetMapping("/user/{id}/deleteTicket/{idTicket}")
     public String formDeleteTicket(@PathVariable long idTicket, @PathVariable long id){
         userService.deleteTicket(id,idTicket);
+       // ticketRepository.deleteById(idTicket);
         return "ticketDeletedCorrectly";
     }
 
