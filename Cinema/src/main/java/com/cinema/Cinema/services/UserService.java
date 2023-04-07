@@ -60,23 +60,27 @@ public class UserService {
     public void addTicket(long idUser, Ticket ticket){
         long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
         ticket.setIdTicket(id);
-        users.get(idUser).getTickets().put(id,ticket);
+       /* users.get(idUser).getTickets().put(id,ticket);
         movies.get(ticket.getIdMovie()).addTicket();
         ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
+
+        */
     }
 
 
     public void modifyTicket(long idUser, Ticket newticket, Ticket ticket){
-        users.get(idUser).getTickets().put(ticket.getIdTicket(), newticket);
+        /*users.get(idUser).getTickets().put(ticket.getIdTicket(), newticket);
         //movies.get(ticket.getIdMovie()).addTicket();
         newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
+
+         */
     }
 
 
     public void deleteTicket(long idUser, long idTicket){
-        long id = users.get(idUser).getTickets().get(idTicket).getIdMovie();
+       // long id = users.get(idUser).getTickets().get(idTicket).getIdMovie();
         users.get(idUser).getTickets().remove(idTicket);
-        movies.get(id).deleteTicket();
+       // movies.get(id).deleteTicket();
     }
 
 

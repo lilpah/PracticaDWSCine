@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,9 +13,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="tickets")
 public class Ticket {
-    private long idMovie;
+    // private long idMovie;
     private int numSeat;
-    public String nameMovie;
+   // public String nameMovie;
     private String movieTime;
     private String movieDate;
     @Id
@@ -26,13 +28,13 @@ public class Ticket {
     @JsonIgnore
     private Movie movie;
 
-    @ManyToOne
+
+    @ManyToMany(mappedBy = "tickets")
     @JsonIgnore
-    private User user;
+    private List<User> users = new ArrayList<>();
 
 
     public Ticket(long idMovie, int numSeat, String movieTime, String movieDate) {
-        this.idMovie = idMovie;
         this.numSeat = numSeat;
         this.movieTime = movieTime;
         this.movieDate = movieDate;

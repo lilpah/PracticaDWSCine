@@ -35,18 +35,22 @@ public class User {
     // private Boolean admin; -> When we are allowed to use databases, add
 
     @ManyToMany
-    @JoinTable(
-            name="movies_to_watch",
+   /* @JoinTable(
+            name="tickets_to_buy",
             joinColumns= @JoinColumn(name = "user_id"),
-            inverseJoinColumns= @JoinColumn(name="movie_id")
+            inverseJoinColumns= @JoinColumn(name="ticket_id")
     )
+    */
     @JsonManagedReference
-    private List<Movie> movies = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
+    /*
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     @JsonManagedReference
     @JsonIgnore
     private List<Ticket> tickets = new ArrayList<>();
+     */
+
     public User(String name, String surname, String pass, String email) {
         this.name = name;
         this.surname = surname;

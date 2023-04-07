@@ -24,8 +24,10 @@ public class TicketController {
     @GetMapping("/user/{id}/deleteTicket")
     public String deleteTicket(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
-        Collection<Ticket> temp = user.allTickets();
+       /* Collection<Ticket> temp = user.allTickets();
         model.addAttribute("tickets",temp);
+
+        */
         return "deleteATicket";
     }
 
@@ -40,32 +42,38 @@ public class TicketController {
     @GetMapping("/user/{id}/modifyTicket")
     public String modifyTickets(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
-        Collection<Ticket> temp = user.allTickets();
-        model.addAttribute("tickets",temp);
+        //Collection<Ticket> temp = user.allTickets();
+        //model.addAttribute("tickets",temp);
         return "modifyTickets";
     }
     @GetMapping("/user/{id}/modifyTicket/{idTicket}")
     public String modifyTicket(Model model,@PathVariable long idTicket,@PathVariable long id){
-        model.addAttribute("numSeat",userService.getUsers().get(id).getTickets().get(idTicket).getNumSeat());
+        /*model.addAttribute("numSeat",userService.getUsers().get(id).getTickets().get(idTicket).getNumSeat());
         model.addAttribute("idMovie",userService.getUsers().get(id).getTickets().get(idTicket).getIdMovie());
         model.addAttribute("nameMovie",userService.getMovies().get(userService.getUsers().get(id).getTickets().get(idTicket).getIdMovie()).getName());
         model.addAttribute("movieTime",userService.getUsers().get(id).getTickets().get(idTicket).getMovieTime());
         model.addAttribute("movieDate",userService.getUsers().get(id).getTickets().get(idTicket).getMovieDate());
+
+         */
         return "modifyATicket";
     }
     @GetMapping("/user/{id}/formTicket/{idTicket}")
     public String formTicket(@RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id,@PathVariable Long idTicket){
-        userService.getUsers().get(id).getTickets().get(idTicket).setNumSeat(numSeat);
+        /*userService.getUsers().get(id).getTickets().get(idTicket).setNumSeat(numSeat);
         userService.getUsers().get(id).getTickets().get(idTicket).setMovieTime(movieTime);
         userService.getUsers().get(id).getTickets().get(idTicket).setMovieDate(movieDate);
+
+         */
         return "ticketsModified";
     }
 
     @GetMapping("/user/{id}/showTickets")
     public String showTickets(Model model, @PathVariable Long id){
         User user = userService.getUsers().get(id);
-        Collection<Ticket> temp = user.allTickets();
+        /*Collection<Ticket> temp = user.allTickets();
         model.addAttribute("tickets",temp);
+
+         */
         return "ticketsUser";
     }
 

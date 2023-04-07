@@ -28,11 +28,10 @@ public class Movie {
 
     @OneToMany(cascade = CascadeType.DETACH,mappedBy = "movie")
     @JsonIgnore
-    private List<Ticket> ticketsList=new ArrayList<>();
+    private List<Ticket> ticketsList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "movies")
-    @JsonIgnore
-    private List<User> users=new ArrayList<>();
+
+
     public Movie(String name, String genre) {
         this.name = name;
         this.genre = genre;
