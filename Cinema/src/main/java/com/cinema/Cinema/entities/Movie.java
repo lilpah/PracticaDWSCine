@@ -23,7 +23,7 @@ public class Movie {
     private int numTickets=0;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idMovie = -1;
+    private long id = -1;
 
 
     @OneToMany(cascade = CascadeType.DETACH,mappedBy = "movie")

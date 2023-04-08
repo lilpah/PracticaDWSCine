@@ -29,7 +29,7 @@ public class Ticket {
     private Movie movie;
 
 
-    @ManyToMany(mappedBy = "tickets")
+    @ManyToMany
     @JsonIgnore
     private List<User> users = new ArrayList<>();
 

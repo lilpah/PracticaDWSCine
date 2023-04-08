@@ -34,7 +34,7 @@ public class User {
     private AtomicLong lastTicketAdded;
     // private Boolean admin; -> When we are allowed to use databases, add
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
    /* @JoinTable(
             name="tickets_to_buy",
             joinColumns= @JoinColumn(name = "user_id"),

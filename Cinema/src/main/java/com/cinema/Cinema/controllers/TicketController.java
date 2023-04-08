@@ -3,6 +3,7 @@ package com.cinema.Cinema.controllers;
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.repositories.TicketRepository;
+import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,24 +21,23 @@ public class TicketController {
     UserService userService;
     @Autowired
     TicketRepository ticketRepository;
-
+    @Autowired
+    UserRepository userRepository;
     @GetMapping("/user/{id}/deleteTicket")
     public String deleteTicket(Model model, @PathVariable Long id){
-        User user = userService.getUsers().get(id);
-       /* Collection<Ticket> temp = user.allTickets();
-        model.addAttribute("tickets",temp);
-
-        */
+        User user = userRepository.findById(id).get();
+        model.addAttribute("tickets", user.getTickets());
         return "deleteATicket";
     }
 
     @GetMapping("/user/{id}/deleteTicket/{idTicket}")
     public String formDeleteTicket(@PathVariable long idTicket, @PathVariable long id){
         userService.deleteTicket(id,idTicket);
+        con llamar al deleteticket, ya lo hemos cambiado ahi
+                nos faltan metodos
        // ticketRepository.deleteById(idTicket);
         return "ticketDeletedCorrectly";
     }
-
 
     @GetMapping("/user/{id}/modifyTicket")
     public String modifyTickets(Model model, @PathVariable Long id){
@@ -93,7 +93,18 @@ public class TicketController {
         return "ticketBookedCorrectly";
     }
 
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
