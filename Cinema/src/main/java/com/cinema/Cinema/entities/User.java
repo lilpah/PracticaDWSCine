@@ -62,5 +62,32 @@ public class User {
 
 
 
+    public Ticket getATicket(long id){
+        for (Ticket t :
+                tickets) {
+            if(t.getIdTicket()== id) return t;
+        }
+        return null;
+    }
+    public int deleteTicket(long idTicket){
+        for (Ticket t :
+                tickets) {
+            if(t.getIdTicket()== idTicket) {
+                tickets.remove(t);
+                return 0;
+            }
+        }
+        return -1;
+    }
+
+
+    public int searchTicket(long idTicket){
+        int i =0, explorer = -1;
+        for (Ticket t : tickets) {
+            if(t.getIdTicket()== idTicket) explorer = i;
+            i++;
+        }
+        return explorer;
+    }
 
 }

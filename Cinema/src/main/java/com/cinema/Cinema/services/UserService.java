@@ -10,7 +10,9 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,10 +27,10 @@ public class UserService {
     @Autowired
     MovieRepository movieRepository;
 
-    private Map<Long, Movie> movies = new ConcurrentHashMap<>();
+    //private Map<Long, Movie> movies = new ConcurrentHashMap<>();
     private AtomicLong lastMovie = new AtomicLong();
 
-    private Map<Long, User> users = new ConcurrentHashMap<>(); // Long is for the id of each ticket that each user has
+   // private Map<Long, User> users = new ConcurrentHashMap<>(); // Long is for the id of each ticket that each user has
 
     private AtomicLong lastId = new AtomicLong();
 
@@ -51,7 +53,15 @@ public class UserService {
         addTicket(3, new Ticket(3, 56, "15:30", "1/08/2023"));
     }
     */
-
+    public Collection<Movie> getMovies(){
+        return movieRepository.findAll();
+    }
+    public Optional<User> getUser(long id){
+        return userRepository.findById(id);
+    }
+    public Collection<User> getUsers(){
+        return userRepository.findAll();
+    }
     public void addUser(User user){
         /*long id = lastId.incrementAndGet();
         user.setId(id);
@@ -77,12 +87,13 @@ public class UserService {
     }
 
     public void addTicket(long idUser, Ticket ticket){
-        long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
-        ticket.setIdTicket(id);
+        //long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
+        //ticket.setIdTicket(id);
        // users.get(idUser).getTickets().put(id,ticket);
         //movies.get(ticket.getIdMovie()).addTicket();
-        ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
-
+        //ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
+        long id = userRepository.findById(idUser).get().getLastTicketAdded().incrementAndGet();
+        ticket.setIdTicket(id);
         userRepository.findById(idUser).get().getTickets().add(ticket);
         movieRepository.findById(ticket.getMovie().getId()).get().addTicket();
 
@@ -93,10 +104,10 @@ public class UserService {
        /* users.get(idUser).getTickets().put(ticket.getIdTicket(), newticket);
         movies.get(ticket.getIdMovie()).addTicket();
         newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
-
         */
-
-
+        newticket.setIdTicket(ticket.getIdTicket());
+        userRepository.findById(idUser).get().getTickets().remove(ticket);
+        userRepository.findById(idUser).get().getTickets().add(newticket);
     }
 
 
@@ -104,15 +115,18 @@ public class UserService {
        /* long id = users.get(idUser).getTickets().get(idTicket).getIdMovie();
         users.get(idUser).getTickets().remove(idTicket);
         movies.get(id).deleteTicket();
-
         */
+        int num = userRepository.findById(idUser).get().searchTicket(idTicket);
+        if(num != -1) userRepository.findById(idUser).get().deleteTicket(idTicket);
     }
 
 
     public void addMovie(Movie movie){
         long idMovie = lastMovie.incrementAndGet();
         movie.setId(idMovie);
-        movies.put(idMovie,movie);
+        //movies.put(idMovie,movie);
+        movieRepository.save(movie);
+
     }
 
 
