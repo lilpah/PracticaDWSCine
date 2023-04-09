@@ -14,7 +14,7 @@ public class UserRESTController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/user/{id}")
+  /*  @GetMapping("/user/{id}")
     public User getUser(@PathVariable long id){
         return userService.getUsers().get(id);
     }
@@ -32,7 +32,7 @@ public class UserRESTController {
             userService.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-    }
+    }*/
 
 
     @GetMapping("/createUser")
@@ -60,7 +60,7 @@ public class UserRESTController {
         return userService.getUsers().toString();
     }
 
-    @PutMapping("updateUser/{id}")
+   /* @PutMapping("updateUser/{id}")
     public ResponseEntity<User> showAllUsers(@PathVariable long id, @RequestBody User updateUser){
       //  User user = new User(name, surname, pass, email);
         if(userService.getUsers().get(id).getId() != -1) {
@@ -71,6 +71,6 @@ public class UserRESTController {
         }
 
     }
-
+    */
 
 }

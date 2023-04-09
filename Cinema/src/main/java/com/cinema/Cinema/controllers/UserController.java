@@ -21,56 +21,58 @@ public class UserController {
 
     @GetMapping("/showUsers")
     public String showUser(Model model){
-        model.addAttribute("users",userService.getUsers());
+        model.addAttribute("users", userService.getUsers());
         return "usersTable";
     }
 
     @GetMapping("/user/{id}")
     public String user(Model model, @PathVariable Long id){
-        model.addAttribute("name",userService.getUser(id).get().getName());
+        model.addAttribute("name", userService.getUser(id).get().getName());
         return "userIndex";
     }
 
     @GetMapping("/deleteUsers")
     public String deleteUsers(Model model){
-        model.addAttribute("users",userService.getUsers());
+        model.addAttribute("users", userService.getUsers());
         return "deleteUsers";
     }
 
     @GetMapping("/deleteUsers/{id}")
     public String deleteUser(Model model, @PathVariable Long id){
-        model.addAttribute("user",userService.getUser(id).get().getName());
+        model.addAttribute("user", userService.getUser(id).get().getName());
         userService.deleteUser(id);
         return "userDeleted";
     }
     @GetMapping("/addUsers")
     public String addUser(Model model){
-        model.addAttribute("users",userService.getUsers());
+        model.addAttribute("users", userService.getUsers());
         return "addUsers";
     }
 
     @GetMapping("/userAdded")
     public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
         userService.addUser(new User(name,surname,pass,email));
-        model.addAttribute("user",name);
+        model.addAttribute("user", name);
         return "userAdded";
     }
 
     @GetMapping("/user/{id}/modifyUser")
     public String modifyUser(Model model, @PathVariable Long id){
-        model.addAttribute("name",userService.getUser(id).get().getName());
-        model.addAttribute("surname",userService.getUser(id).get().getSurname());
-        model.addAttribute("pass",userService.getUser(id).get().getPass());
-        model.addAttribute("email",userService.getUser(id).get().getEmail());
+        model.addAttribute("name", userService.getUser(id).get().getName());
+        model.addAttribute("surname", userService.getUser(id).get().getSurname());
+        model.addAttribute("pass", userService.getUser(id).get().getPass());
+        model.addAttribute("email", userService.getUser(id).get().getEmail());
         return "modifyUser";
     }
 
     @GetMapping("/user/{id}/userModified")
     public String userModified(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@PathVariable Long id){
-        userService.getUser(id).get().setName(name);
+        /*userService.getUser(id).get().setName(name);
         userService.getUser(id).get().setSurname(surname);
         userService.getUser(id).get().setPass(pass);
-        model.addAttribute("name",userService.getUser(id).get().getName());
+         */
+        userService.modifyUser(id, new User(name, surname, pass, userService.getUser(id).get().getEmail()));
+        model.addAttribute("name", userService.getUser(id).get().getName());
         return "userModified";
     }
 }
