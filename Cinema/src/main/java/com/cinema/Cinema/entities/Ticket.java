@@ -34,7 +34,7 @@ public class Ticket {
     private List<User> users = new ArrayList<>();
 
 
-    public Ticket(long idMovie, int numSeat, String movieTime, String movieDate) {
+    public Ticket(long idMovie,int numSeat, String movieTime, String movieDate) {
         this.numSeat = numSeat;
         this.movieTime = movieTime;
         this.movieDate = movieDate;
