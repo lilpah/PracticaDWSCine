@@ -36,7 +36,7 @@ public class TicketRESTController {
         return "a";
     }
 
-    @PostMapping("/user/{id}/showTickets")
+  /*  @PostMapping("/user/{id}/showTickets")
     public ResponseEntity<Collection<Ticket>> showTickets2(Model model, @PathVariable long id) {
         if(userService.getUsers().get(id).getTickets() == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,10 +45,11 @@ public class TicketRESTController {
         Collection<Ticket> temp = user.allTickets();
         model.addAttribute("tickets", temp);
         return new ResponseEntity<>(user.allTickets(), HttpStatus.OK);
-         */
+
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
+
 
     @GetMapping("/user/{id}/showTickets")
     public ResponseEntity<Collection<Ticket>> showTickets(Model model, @PathVariable long id) {
@@ -60,10 +61,13 @@ public class TicketRESTController {
         model.addAttribute("tickets", temp);
         return new ResponseEntity<>(user.allTickets(), HttpStatus.OK);
 
-       */
+
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
+
+   */
+
 
 
    @DeleteMapping("/user/{id}/deleteTicket/{idTicket}")

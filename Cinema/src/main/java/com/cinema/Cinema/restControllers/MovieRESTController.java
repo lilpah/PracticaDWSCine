@@ -11,7 +11,7 @@ public class MovieRESTController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/numTicketsByMovie/{idMovie}")
+   /* @GetMapping("/numTicketsByMovie/{idMovie}")
     @ResponseStatus(HttpStatus.CREATED)
     public int numTicketsByMovie(@PathVariable long idMovie) {
         return userService.getMovies().get(idMovie).getNumTickets();
@@ -21,7 +21,7 @@ public class MovieRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public int numTicketByMovie2(@PathVariable long idMovie) {
         return userService.getMovies().get(idMovie).getNumTickets();
-    }
+    }*/
 
 
 
