@@ -26,7 +26,7 @@ public class TicketService {
     }
 
     public void createTicket(Ticket ticket){
-       // long temp = lastId.incrementAndGet();
+        long temp = lastId.incrementAndGet();
         //ticket.setIdTicket(temp);
         ticketRepository.save(ticket);
        // tickets.put(temp, ticket);

@@ -34,8 +34,8 @@ public class UserService {
 
     private AtomicLong lastId = new AtomicLong();
 
-/*
-   public UserService(){
+
+  /*  public UserService(){
         addUser(new User("User 1","Surname User 1","P@ssW0rd_1","user1@lacartelera.com"));
         addUser(new User("User 2","Surname User 2","P@ssW0rd_2","user2@lacartelera.com"));
         addUser(new User("User 3","Surname User 3","P@ssW0rd_3","user3@lacartelera.com"));
@@ -47,11 +47,6 @@ public class UserService {
         addMovie(new Movie("Watcher","Thriller"));
         addMovie(new Movie("As bestas","Mystery"));
 
-        movieRepository.save(new Movie("Creed","Action"));
-        movieRepository.save(new Movie("Scream VI","Terror"));
-        movieRepository.save(new Movie("Mari(dos)","Comedy"));
-        movieRepository.save(new Movie("Watcher","Thriller"));
-        movieRepository.save(new Movie("As bestas","Mystery"));
 
         addTicket(1, new Ticket(1, 24, "21:24", "3/03/2023"));
         addTicket(2, new Ticket(2, 14, "22:00", "5/03/2023"));
@@ -88,11 +83,7 @@ public class UserService {
     public void modifyUser(long id, User user){
         /*users.put(id, user);
          */
-        User existingUser = userRepository.findById(id).get();
-        existingUser.setName(user.getName());
-        existingUser.setSurname(user.getSurname());
-        existingUser.setPass(user.getPass());
-        userRepository.save(existingUser);
+        userRepository.save(user);
     }
 
     public void addTicket(long idUser, Ticket ticket){

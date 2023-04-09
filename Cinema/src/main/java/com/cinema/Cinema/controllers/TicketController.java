@@ -32,7 +32,7 @@ public class TicketController {
 
     @GetMapping("/user/{id}/deleteTicket/{idTicket}")
     public String formDeleteTicket(@PathVariable long idTicket, @PathVariable long id){
-        userService.deleteTicket(id, idTicket);
+        userService.deleteTicket(id,idTicket);
         return "ticketDeletedCorrectly";
     }
 
