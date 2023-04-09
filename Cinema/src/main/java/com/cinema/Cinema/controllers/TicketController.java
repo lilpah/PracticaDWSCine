@@ -2,8 +2,10 @@ package com.cinema.Cinema.controllers;
 
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
+import com.cinema.Cinema.repositories.MovieRepository;
 import com.cinema.Cinema.repositories.TicketRepository;
 import com.cinema.Cinema.repositories.UserRepository;
+import com.cinema.Cinema.services.MovieService;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,15 @@ public class TicketController {
     @Autowired
     UserService userService;
     @Autowired
-    TicketRepository ticketRepository;
+    MovieService movieService;
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    MovieRepository movieRepository;
+
+
+
     @GetMapping("/user/{id}/deleteTicket")
     public String deleteTicket(Model model, @PathVariable Long id){
         User user = userRepository.findById(id).get();
@@ -62,22 +70,22 @@ public class TicketController {
 
     @GetMapping("/user/{id}/showTickets")
     public String showTickets(Model model, @PathVariable Long id){
-        model.addAttribute("tickets",userService.getUser(id).get().getTickets());
+        model.addAttribute("tickets", userService.getUser(id).get().getTickets());
         return "ticketsUser";
     }
 
     @GetMapping("/user/{id}/buyTickets")
     public String buyTickets(Model model, @PathVariable Long id){
         User user = userService.getUser(id).get();
-        model.addAttribute("movies",userService.getMovies());
-        model.addAttribute("name",user.getName());
+        model.addAttribute("movies", movieService.getMovies());
+        model.addAttribute("name", user.getName());
         return "tickets";
     }
 
 
     @GetMapping("/user/{id}/formTicket")
     public String formTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id){
-        Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
+        Ticket tmp = new Ticket(movieService.findMovie(idMovie), numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
     }

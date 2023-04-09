@@ -2,6 +2,7 @@ package com.cinema.Cinema.restControllers;
 
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
+import com.cinema.Cinema.services.MovieService;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,13 @@ public class TicketRESTController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    MovieService movieService;
 
     @GetMapping("/user/{id}/buyTicket")
     @ResponseStatus(HttpStatus.CREATED)
     public String buyTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
-        Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
+        Ticket tmp = new Ticket(movieService.findMovie(idMovie), numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         //return userService.getUsers().get(id).allTickets().toString();
         return "a";

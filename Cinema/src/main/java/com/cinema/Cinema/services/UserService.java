@@ -114,9 +114,11 @@ public class UserService {
         movies.get(ticket.getIdMovie()).addTicket();
         newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
         */
+
         newticket.setIdTicket(ticket.getIdTicket());
         userRepository.findById(idUser).get().getTickets().remove(ticket);
         userRepository.findById(idUser).get().getTickets().add(newticket);
+
     }
 
 
