@@ -49,6 +49,12 @@ public class UserRESTController {
         userService.addUser(user);
     }
 
+    /*
+    public void createUser2(@RequestBody String name, @RequestBody String surname, @RequestBody String pass, @RequestBody String email){
+        userService.addUser(new User(name,surname,pass,email));
+    }
+     */
+
     @GetMapping("/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
     public String showAllUsers(){
@@ -63,13 +69,13 @@ public class UserRESTController {
 
     //este metodo de updateUser (put) no funciona
     @PutMapping("updateUser/{id}")
-    public ResponseEntity<User> showAllUsers(@PathVariable long id, @RequestBody User updateUser){
-      //  User user = new User(name, surname, pass, email);
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userUpdated){
+        //User user = new User(name, surname, pass, email);
         if(userService.getUser(id).get().getId() == -1) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         else{
-            userService.modifyUser(id, updateUser);
+            userService.modifyUser(id, userUpdated);
             return new ResponseEntity<>(HttpStatus.OK);
         }
 

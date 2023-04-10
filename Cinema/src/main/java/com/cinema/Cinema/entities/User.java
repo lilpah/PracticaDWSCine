@@ -34,13 +34,17 @@ public class User {
     private AtomicLong lastTicketAdded;
     // private Boolean admin; -> When we are allowed to use databases, add
 
-    @ManyToMany(mappedBy = "users")
+
+
+    /*
+
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    /* @JoinTable(
             name="tickets_to_buy",
             joinColumns= @JoinColumn(name = "user_id"),
             inverseJoinColumns= @JoinColumn(name="ticket_id")
     )
-    */
+
     @JsonManagedReference
     private List<Ticket> tickets = new ArrayList<>();
 
@@ -50,6 +54,16 @@ public class User {
     @JsonIgnore
     private List<Ticket> tickets = new ArrayList<>();
      */
+
+
+
+    @OneToMany(cascade = CascadeType.DETACH,mappedBy = "users")
+    @JsonIgnore
+    private List<Ticket> tickets = new ArrayList<>();
+
+
+
+
 
     public User(String name, String surname, String pass, String email) {
         this.name = name;
@@ -62,7 +76,7 @@ public class User {
 
 
 
-    public Ticket getATicket(long id){
+   public Ticket getATicket(long id){
         for (Ticket t :
                 tickets) {
             if(t.getIdTicket()== id) return t;

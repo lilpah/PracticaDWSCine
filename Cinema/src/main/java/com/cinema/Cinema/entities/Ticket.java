@@ -15,7 +15,7 @@ import java.util.List;
 public class Ticket {
     // private long idMovie;
     private int numSeat;
-   // public String nameMovie;
+    public String nameMovie;
     private String movieTime;
     private String movieDate;
     @Id
@@ -29,9 +29,18 @@ public class Ticket {
     private Movie movie;
 
 
-    @ManyToMany
+   /* @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<User> users = new ArrayList<>();
+
+    */
+
+
+
+    @ManyToOne
+    @JsonIgnore
+    private User users;
+
 
 
     public Ticket(Movie movie, int numSeat, String movieTime, String movieDate) {
@@ -40,6 +49,5 @@ public class Ticket {
         this.movieDate = movieDate;
         this.movie = movie;
     }
-
 
 }

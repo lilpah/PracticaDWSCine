@@ -20,7 +20,7 @@ public class Movie {
     private String name;
     private String genre;
     private int numSeats = 100;
-    private int numTickets=0;
+    private int numTickets = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = -1;
