@@ -17,11 +17,11 @@ public class TicketService {
     @Autowired
     TicketRepository ticketRepository;
 
-    private Map<Long, Ticket> tickets = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
+    //private Map<Long, Ticket> tickets = new ConcurrentHashMap<>();
+   // private AtomicLong lastId = new AtomicLong();
 
 
-    public Collection<Ticket> getAll(){
+    /*public Collection<Ticket> getAll(){
         return tickets.values();
     }
 
@@ -30,7 +30,15 @@ public class TicketService {
         //ticket.setIdTicket(temp);
         ticketRepository.save(ticket);
        // tickets.put(temp, ticket);
+    }*/
+
+
+
+    public Ticket getTicket(long id){
+        return ticketRepository.findById(id).get();
     }
+
+
 
 
 

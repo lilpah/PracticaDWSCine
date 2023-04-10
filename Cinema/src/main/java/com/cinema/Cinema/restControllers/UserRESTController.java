@@ -17,17 +17,17 @@ public class UserRESTController {
 
    @GetMapping("/user/{id}")
     public User getUser(@PathVariable long id){
-        return userService.getUser(id).get();
+        return userService.getUser(id);
     }
 
     @PostMapping("/user/{id}")
     public User getUser2(@PathVariable long id){
-        return userService.getUser(id).get();
+        return userService.getUser(id);
     }
 
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        if(userService.getUser(id).get().getId() == -1){
+        if(userService.getUser(id).getId() == -1){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             userService.deleteUser(id);
@@ -71,7 +71,7 @@ public class UserRESTController {
     @PutMapping("updateUser/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userUpdated){
         //User user = new User(name, surname, pass, email);
-        if(userService.getUser(id).get().getId() == -1) {
+        if(userService.getUser(id).getId() == -1) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         else{
