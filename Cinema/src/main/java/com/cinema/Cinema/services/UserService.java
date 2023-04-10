@@ -96,23 +96,18 @@ public class UserService {
     }
 
     public void addTicket(long idUser, Ticket ticket) {
-        //long id = users.get(idUser).getLastTicketAdded().incrementAndGet();
-        //ticket.setIdTicket(id);
-        // users.get(idUser).getTickets().put(id,ticket);
-        //movies.get(ticket.getIdMovie()).addTicket();
-        //ticket.setNameMovie(movies.get(ticket.getIdMovie()).getName());
-        long id = userRepository.findById(idUser).get().getLastTicketAdded().incrementAndGet();
+        User user = userRepository.findById(idUser).get();
+        Movie movie = movieRepository.findById(ticket.getMovie().getId()).get();
+        long id = user.getLastTicketAdded().incrementAndGet();
         ticket.setIdTicket(id);
-        //userRepository.findById(idUser).get().getTickets().add(ticket);
-        //movieRepository.findById(ticket.getMovie().getId()).get().getTicketsList().add(ticket);
-        //ticketRepository.findById(id).get().getUsers().add(userRepository.findById(idUser).get());
-
-        ticket.setUsers(userRepository.findById(idUser).get());
-        ticket.setMovie(movieRepository.findById(ticket.getMovie().getId()).get());
-        ticket.setNameMovie(movieRepository.findById(ticket.getMovie().getId()).get().getName());
-        ticket.getMovie().addTicket();
+        ticket.setUsers(user);
+        ticket.setMovie(movie);
+        ticket.setNameMovie(movie.getName());
+        movie.addTicket();
+        movieRepository.save(movie);
         ticketRepository.save(ticket);
-
+        user.getMovies().add(movie);
+        userRepository.save(user);
     }
 
 
@@ -144,7 +139,6 @@ public class UserService {
         movie.setId(idMovie);
         //movies.put(idMovie,movie);
         movieRepository.save(movie);
-
     }
 
 
