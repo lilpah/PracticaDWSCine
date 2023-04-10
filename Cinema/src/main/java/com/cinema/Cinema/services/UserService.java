@@ -142,16 +142,44 @@ public class UserService {
         users.get(idUser).getTickets().remove(idTicket);
         movies.get(id).deleteTicket();
         */
-
+        Ticket ticket = ticketRepository.findById(idTicket).get();
         User user = userRepository.findById(idUser).get();
-        Ticket ticket= ticketRepository.findById(idTicket).get();
-        Movie movie = movieRepository.findById(ticket.getMovie().getId()).get() ;
-        user.getMovies().remove(movie);
-
-        userRepository.save(user);
+        Movie movie = movieRepository.findById(ticket.getMovie().getId()).get();
         movie.deleteTicket();
         movieRepository.save(movie);
         ticketRepository.deleteById(idTicket);
+
+
+        int cont = 0;
+        for (Ticket s :  user.getTickets()) {
+            if (s.getMovie().getName().equals(movie.getName())){
+                cont++;
+            }
+        }
+        //System.out.println(cont);
+        if(cont == 0){
+            /*user.getMovies().remove(movie);
+            movie.getUsers().remove(user);
+            movieRepository.save(movie);
+            userRepository.save(user);
+
+             */
+            this.eliminarPeliculaComprada(user.getId(), movie.getId());
+        }
+
+    }
+
+    public void eliminarPeliculaComprada(long usuarioId, long peliculaId) {
+        User usuario = userRepository.findById(usuarioId).orElse(null);
+        if (usuario != null) {
+            Movie pelicula = usuario.getMovies().stream()
+                    .filter(p -> p.getId() == peliculaId)
+                    .findFirst().orElse(null);
+            if (pelicula != null) {
+                usuario.getMovies().remove(pelicula);
+                userRepository.save(usuario);
+            }
+        }
     }
 
 
