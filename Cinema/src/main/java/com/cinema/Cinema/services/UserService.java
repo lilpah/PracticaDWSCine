@@ -117,12 +117,10 @@ public class UserService {
         newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
         */
         Ticket ticket = ticketRepository.findById(idTicket).get();
-
         ticket.setNameMovie(newticket.getNameMovie());
         ticket.setNumSeat(newticket.getNumSeat());
         ticket.setMovieTime(newticket.getMovieTime());
         ticket.setMovieDate(newticket.getMovieDate());
-
         ticketRepository.save(ticket);
 
     }
@@ -133,8 +131,14 @@ public class UserService {
         users.get(idUser).getTickets().remove(idTicket);
         movies.get(id).deleteTicket();
         */
-        long id = userRepository.findById(idUser).get().getLastTicketAdded().decrementAndGet();
-        ticketRepository.findById(idTicket).get().getMovie().deleteTicket();
+
+        User user = userRepository.findById(idUser).get();
+        Ticket ticket= ticketRepository.findById(idTicket).get();
+        Movie movie = movieRepository.findById(ticket.getMovie().getId()).get() ;
+        user.getMovies().remove(movie);
+
+        userRepository.save(user);
+        movie.deleteTicket();
         ticketRepository.deleteById(idTicket);
     }
 

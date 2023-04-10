@@ -32,7 +32,7 @@ public class Movie {
     @JsonIgnore
     private List<Ticket> ticketsList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
 
