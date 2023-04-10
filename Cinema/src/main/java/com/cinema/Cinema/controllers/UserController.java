@@ -16,8 +16,7 @@ import java.util.Collection;
 public class UserController {
     @Autowired
     UserService userService;
-    @Autowired
-    UserRepository userRepository;
+
 
     @GetMapping("/showUsers")
     public String showUser(Model model){
@@ -27,7 +26,7 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public String user(Model model, @PathVariable Long id){
-        model.addAttribute("name", userService.getUser(id).get().getName());
+        model.addAttribute("name", userService.getUser(id).getName());
         return "userIndex";
     }
 
@@ -39,7 +38,7 @@ public class UserController {
 
     @GetMapping("/deleteUsers/{id}")
     public String deleteUser(Model model, @PathVariable Long id){
-        model.addAttribute("user", userService.getUser(id).get().getName());
+        model.addAttribute("user", userService.getUser(id).getName());
         userService.deleteUser(id);
         return "userDeleted";
     }
@@ -58,10 +57,10 @@ public class UserController {
 
     @GetMapping("/user/{id}/modifyUser")
     public String modifyUser(Model model, @PathVariable Long id){
-        model.addAttribute("name", userService.getUser(id).get().getName());
-        model.addAttribute("surname", userService.getUser(id).get().getSurname());
-        model.addAttribute("pass", userService.getUser(id).get().getPass());
-        model.addAttribute("email", userService.getUser(id).get().getEmail());
+        model.addAttribute("name", userService.getUser(id).getName());
+        model.addAttribute("surname", userService.getUser(id).getSurname());
+        model.addAttribute("pass", userService.getUser(id).getPass());
+        model.addAttribute("email", userService.getUser(id).getEmail());
         return "modifyUser";
     }
 
@@ -71,8 +70,8 @@ public class UserController {
         userService.getUser(id).get().setSurname(surname);
         userService.getUser(id).get().setPass(pass);
          */
-        userService.modifyUser(id, new User(name, surname, pass, userService.getUser(id).get().getEmail()));
-        model.addAttribute("name", userService.getUser(id).get().getName());
+        userService.modifyUser(id, new User(name, surname, pass, userService.getUser(id).getEmail()));
+        model.addAttribute("name", userService.getUser(id).getName());
         return "userModified";
     }
 

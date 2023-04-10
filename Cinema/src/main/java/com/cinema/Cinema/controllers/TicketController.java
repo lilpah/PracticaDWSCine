@@ -25,16 +25,13 @@ public class TicketController {
     @Autowired
     MovieService movieService;
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    TicketRepository ticketRepository;
+    TicketService ticketService;
 
 
 
     @GetMapping("/user/{id}/deleteTicket")
     public String deleteTicket(Model model, @PathVariable Long id){
-        User user = userRepository.findById(id).get();
+        User user = userService.getUser(id);
         model.addAttribute("tickets", user.getTickets());
         return "deleteATicket";
     }
@@ -47,18 +44,18 @@ public class TicketController {
 
     @GetMapping("/user/{id}/modifyTicket")
     public String modifyTickets(Model model, @PathVariable Long id){
-        User user = userService.getUser(id).get();
+        User user = userService.getUser(id);
         Collection<Ticket> temp = user.getTickets();
         model.addAttribute("tickets",temp);
         return "modifyTickets";
     }
     @GetMapping("/user/{id}/modifyTicket/{idTicket}")
     public String modifyTicket(Model model,@PathVariable long idTicket,@PathVariable long id){
-        model.addAttribute("numSeat",userService.getUser(id).get().getATicket(idTicket).getNumSeat());
-        model.addAttribute("idMovie",userService.getUser(id).get().getATicket(idTicket).getMovie().getId());
-        model.addAttribute("nameMovie",userService.getUser(id).get().getATicket(idTicket).getMovie().getName());
-        model.addAttribute("movieTime",userService.getUser(id).get().getATicket(idTicket).getMovieTime());
-        model.addAttribute("movieDate",userService.getUser(id).get().getATicket(idTicket).getMovieDate());
+        model.addAttribute("numSeat",userService.getUser(id).getATicket(idTicket).getNumSeat());
+        model.addAttribute("idMovie",userService.getUser(id).getATicket(idTicket).getMovie().getId());
+        model.addAttribute("nameMovie",userService.getUser(id).getATicket(idTicket).getMovie().getName());
+        model.addAttribute("movieTime",userService.getUser(id).getATicket(idTicket).getMovieTime());
+        model.addAttribute("movieDate",userService.getUser(id).getATicket(idTicket).getMovieDate());
         return "modifyATicket";
     }
     @GetMapping("/user/{id}/formTicket/{idTicket}")
@@ -69,7 +66,7 @@ public class TicketController {
 
         */
 
-        Ticket newTicket = new Ticket(ticketRepository.findById(idTicket).get().getMovie(), numSeat, movieTime, movieDate);
+        Ticket newTicket = new Ticket(ticketService.getTicket(idTicket).getMovie(), numSeat, movieTime, movieDate);
         userService.modifyTicket(id, newTicket, idTicket);
 
 
@@ -78,13 +75,13 @@ public class TicketController {
 
     @GetMapping("/user/{id}/showTickets")
     public String showTickets(Model model, @PathVariable Long id){
-        model.addAttribute("tickets", userService.getUser(id).get().getTickets());
+        model.addAttribute("tickets", userService.getUser(id).getTickets());
         return "ticketsUser";
     }
 
     @GetMapping("/user/{id}/buyTickets")
     public String buyTickets(Model model, @PathVariable Long id){
-        User user = userService.getUser(id).get();
+        User user = userService.getUser(id);
         model.addAttribute("movies", movieService.getMovies());
         model.addAttribute("name", user.getName());
         return "tickets";
