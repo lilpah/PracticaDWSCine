@@ -106,6 +106,7 @@ public class UserService {
         userRepository.findById(idUser).get().getTickets().add(ticket);
         movieRepository.findById(ticket.getMovie().getId()).get().addTicket();
 
+
     }
 
 
