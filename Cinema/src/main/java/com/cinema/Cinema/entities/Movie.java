@@ -33,7 +33,7 @@ public class Movie {
     private List<Ticket> ticketsList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
 
     public Movie(String name, String genre) {

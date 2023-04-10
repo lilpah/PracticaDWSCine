@@ -106,8 +106,19 @@ public class UserService {
         movie.addTicket();
         movieRepository.save(movie);
         ticketRepository.save(ticket);
-        user.getMovies().add(movie);
-        userRepository.save(user);
+
+
+        boolean t = false;
+        for (Movie s :  user.getMovies()) {
+            if (s.getName().equals(movie.getName())){
+                t = true;
+            }
+        }
+        if(!t){
+            user.getMovies().add(movie);
+            userRepository.save(user);
+        }
+
     }
 
 
@@ -139,6 +150,7 @@ public class UserService {
 
         userRepository.save(user);
         movie.deleteTicket();
+        movieRepository.save(movie);
         ticketRepository.deleteById(idTicket);
     }
 

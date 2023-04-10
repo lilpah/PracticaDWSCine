@@ -28,10 +28,6 @@ public class TicketController {
     UserRepository userRepository;
 
     @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    TicketService ticketService;
-    @Autowired
     TicketRepository ticketRepository;
 
 
