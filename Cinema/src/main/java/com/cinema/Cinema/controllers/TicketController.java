@@ -6,6 +6,7 @@ import com.cinema.Cinema.repositories.MovieRepository;
 import com.cinema.Cinema.repositories.TicketRepository;
 import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.MovieService;
+import com.cinema.Cinema.services.TicketService;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,10 @@ public class TicketController {
 
     @Autowired
     MovieRepository movieRepository;
+    @Autowired
+    TicketService ticketService;
+    @Autowired
+    TicketRepository ticketRepository;
 
 
 
@@ -62,9 +67,16 @@ public class TicketController {
     }
     @GetMapping("/user/{id}/formTicket/{idTicket}")
     public String formTicket(@RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id,@PathVariable Long idTicket){
-        userService.getUser(id).get().getATicket(idTicket).setNumSeat(numSeat);
+       /* userService.getUser(id).get().getATicket(idTicket).setNumSeat(numSeat);
         userService.getUser(id).get().getATicket(idTicket).setMovieTime(movieTime);
         userService.getUser(id).get().getATicket(idTicket).setMovieDate(movieDate);
+
+        */
+
+        Ticket newTicket = new Ticket(ticketRepository.findById(idTicket).get().getMovie(), numSeat, movieTime, movieDate);
+        userService.modifyTicket(id, newTicket, idTicket);
+
+
         return "ticketsModified";
     }
 

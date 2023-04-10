@@ -48,6 +48,7 @@ public class Ticket {
         this.movieTime = movieTime;
         this.movieDate = movieDate;
         this.movie = movie;
+        this.nameMovie = movie.getName();
     }
 
 }
