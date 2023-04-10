@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>LA CARTELERA</title>
+
+<link href="../../../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="../../../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../../../../richtext/richtext.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+<!-- Custom Theme files -->
+<!-- <script src="js/jquery.min.js"></script> -->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<!-- header-section-starts -->
+<div class="full">
+			<div class="menu">
+				<ul>
+					<li><a href="/static"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+					<li><a href="../static/html/reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+					<li><a href="/showUsers"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+					<li><a class="active" href="/contact"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+				</ul>
+			</div>
+	<div class="main">
+		<div class="contact-content">
+			<div class="top-header span_top">
+				<div class="logo">
+					<p>LA CARTELERA</p>
+				</div>
+				<div class="search v-search">
+					<form>
+						<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+						<input type="submit" value="">
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!---contact-->
+		<div class="main-contact">
+				 <h3 class="head">CONTACT</h3>
+				 <p>WE'RE ALWAYS HERE TO HELP YOU</p>
+				 <div class="contact-form">
+					 <form id="form" action="" class="form">
+						 <div class="col-md-6 contact-left">
+							  <input name="email" type="text" id="email" placeholder="E-mail" required/>
+						  </div>
+						  <div class="col-md-6 contact-right">
+							 <textarea id="message" name="message" placeholder="Message"></textarea>
+							 <button type="submit" class="btn_stly">SEND</button>
+						 </div>
+						 <div class="clearfix"></div>
+					 </form>
+					 <a hrfe="mailto:laCarteleraCine2.0@gmail.com" id="mail_pe">mail</a>
+				 </div>
+
+
+				 <div>
+					 <h3>Find Us Here</h3>
+					 <div class="map" style="margin-top:25px">
+						<div style="width: 100%"><iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=C.%20Oslo,%2053,%2028922%20Alcorc%C3%B3n,%20Madrid+(Cines%20URJC)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="600" frameborder="0"><a href="https://www.gps.ie/sport-gps/">swimming watch</a></iframe></div></div>
+
+				 </div>
+			<form action="/contact/formComment">
+			<div role="tabpanel" style="margin-top:45px">
+				<h3 class="head">Write your comment</h3>
+				<p>THANK YOU FOR GIVING US YOUR OPINION<br></p>
+				<div class="col-md-6 contact-right" style="margin-top:25px">
+					<th:ute class="richcomment" id="comment" name="comment" rows="5" placeholder="Comment" th:field="*{comment}" autocomplete="off"></th:ute>
+					<button type="submit" class="btn_stly" style="margin-top:25px" style="margin-bottom:100px">SEND</button>
+				</div>
+
+			</div>
+			</form>
+			<div>
+				{{comment}}
+			</div>
+
+
+		</div>
+		</div>
+	</div>
+</div>
+
+<script src="../../../js/mailtoContact.js"></script>
+	<script src="../../../jquery.min.js"></script>
+	<script src="../../../richtext/jquery.richtext.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$('#comment').richText();
+	});
+	/*$('.richcomment').richText({
+
+			// text formatting
+			bold: true,
+			italic: true,
+			underline: true,
+
+			// text alignment
+			leftAlign: true,
+			centerAlign: true,
+			rightAlign: true,
+			justify: true,
+
+			// lists
+			ol: true,
+			ul: true,
+
+			// title
+			heading: true,
+
+			// fonts
+			fonts: true,
+			fontList: ["Arial",
+				"Arial Black",
+				"Comic Sans MS",
+				"Courier New",
+				"Geneva",
+				"Georgia",
+				"Helvetica",
+				"Impact",
+				"Lucida Console",
+				"Tahoma",
+				"Times New Roman",
+				"Verdana"
+			],
+			fontColor: true,
+			fontSize: true,
+
+			// uploads
+			imageUpload: true,
+			fileUpload: true,
+
+
+		// media
+				Embed: true,
+
+				// link
+				urls: true,
+
+				// tables
+				table: true,
+
+				// code
+				removeStyles: true,
+				code: true,
+
+				// colors
+				colors: [],
+
+				// dropdowns
+				fileHTML: '',
+				imageHTML: '',
+
+				// translations
+				translations: {
+			'title': 'Title',
+					'white': 'White',
+					'black': 'Black',
+					'brown': 'Brown',
+					'beige': 'Beige',
+					'darkBlue': 'Dark Blue',
+					'blue': 'Blue',
+					'lightBlue': 'Light Blue',
+					'darkRed': 'Dark Red',
+					'red': 'Red',
+					'darkGreen': 'Dark Green',
+					'green': 'Green',
+					'purple': 'Purple',
+					'darkTurquois': 'Dark Turquois',
+					'turquois': 'Turquois',
+					'darkOrange': 'Dark Orange',
+					'orange': 'Orange',
+					'yellow': 'Yellow',
+					'imageURL': 'Image URL',
+					'fileURL': 'File URL',
+					'linkText': 'Link text',
+					'url': 'URL',
+					'size': 'Size',
+					'responsive': '<a href="https://www.jqueryscript.net/tags.php?/Responsive/">Responsive</a>',
+					'text': 'Text',
+					'openIn': 'Open in',
+					'sameTab': 'Same tab',
+					'newTab': 'New tab',
+					'align': 'Align',
+					'left': 'Left',
+					'justify': 'Justify',
+					'center': 'Center',
+					'right': 'Right',
+					'rows': 'Rows',
+					'columns': 'Columns',
+					'add': 'Add',
+					'pleaseEnterURL': 'Please enter an URL',
+					'videoURLnotSupported': 'Video URL not supported',
+					'pleaseSelectImage': 'Please select an image',
+					'pleaseSelectFile': 'Please select a file',
+					'bold': 'Bold',
+					'italic': 'Italic',
+					'underline': 'Underline',
+					'alignLeft': 'Align left',
+					'alignCenter': 'Align centered',
+					'alignRight': 'Align right',
+					'addOrderedList': 'Add ordered list',
+					'addUnorderedList': 'Add unordered list',
+					'addHeading': 'Add Heading/title',
+					'addFont': 'Add font',
+					'addFontColor': 'Add font color',
+					'addFontSize': 'Add font size',
+					'addImage': 'Add image',
+					'addVideo': 'Add video',
+					'addFile': 'Add file',
+					'addURL': 'Add URL',
+					'addTable': 'Add table',
+					'removeStyles': 'Remove styles',
+					'code': 'Show HTML code',
+					'undo': 'Undo',
+					'redo': 'Redo',
+					'close': 'Close'
+		},
+
+		// privacy
+		youtubeCookies: false,
+
+				// preview
+				preview: false,
+
+				// placeholder
+				placeholder: '',
+
+				// dev settings
+				useSingleQuotes: false,
+				height: 0,
+				heightPercentage: 0,
+				id: "",
+				class: "",
+				useParagraph: false,
+				maxlength: 0,
+				useTabForNext: false,
+
+				// callback function after init
+				callback: undefined
+
+	});*/
+</script>
+</body>
+</html>

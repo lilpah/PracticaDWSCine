@@ -75,6 +75,18 @@ public class UserController {
         model.addAttribute("name", userService.getUser(id).get().getName());
         return "userModified";
     }
+
+    @GetMapping("/contact/formComment")
+    public String formComment(@RequestParam String comment, Model model){
+        model.addAttribute("comment", comment);
+        return "contact";
+    }
+
+    @GetMapping("/contact")
+    public String contact(Model model){
+        model.addAttribute("comment", "Is Empty");
+        return "contact";
+    }
 }
 
 
