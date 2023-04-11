@@ -2221,29 +2221,13 @@ font-weight: 700;
 }
 
 .comment-table {
-	border-collapse: collapse;
-	width: 100%;
 	margin: 20px 0;
 }
 .comment-table th {
-	background-color: #f7e1b5;
-	color: #000;
-	text-align: left;
 	padding: 8px;
-	border: 1px solid #F3F3F3;
 }
-
 .comment-table td {
 	padding: 8px;
-	border: 1px solid #F3F3F3;
 }
 
-.comment-table tr:nth-child(even) {
-	background-color: #f7e1b5;
-	margin-top:20px;
-}
-
-.comment-table tr:hover {
-	background-color: #f7e1b5;
-}
 
