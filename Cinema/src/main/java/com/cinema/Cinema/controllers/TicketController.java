@@ -90,7 +90,7 @@ public class TicketController {
 
     @GetMapping("/user/{id}/formTicket")
     public String formTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id){
-        Ticket tmp = new Ticket(movieService.findMovie(idMovie), numSeat, movieTime, movieDate);
+        Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         return "ticketBookedCorrectly";
     }
