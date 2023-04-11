@@ -78,6 +78,9 @@ public class UserController {
 
     @GetMapping("/contact/formComment")
     public String formComment(@RequestParam String comment, Model model){
+        if(!(comment.contains("<script>"))){
+            return "reviews";
+        }
         model.addAttribute("comment", comment);
         return "contact";
     }

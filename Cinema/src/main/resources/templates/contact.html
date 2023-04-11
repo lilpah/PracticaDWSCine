@@ -75,10 +75,12 @@
 			<div role="tabpanel" style="margin-top:45px">
 				<h3 class="head">Write your comment</h3>
 				<p>THANK YOU FOR GIVING US YOUR OPINION<br></p>
-				<div class="col-md-6 contact-right" style="margin-top:25px">
-					<textarea class="richcomment" id="comment" name="comment" rows="5" placeholder="Comment" th:field="*{comment}" autocomplete="off"></textarea>
+				<form action="/contact/formComment" class="formulario" id="formulario" onsubmit="return validar();">
+					<div class="col-md-6 contact-right" style="margin-top:25px">
+						<textarea class="richcomment" id="comment" name="comment" rows="5" placeholder="Comment" th:field="*{comment}" autocomplete="off" >{{comment}}</textarea>
+					</div>
 					<button type="submit" class="btn_stly" style="margin-top:25px" style="margin-bottom:100px" onclick="agregarHtml()">SEND</button>
-				</div>
+				</form>
 
 			</div>
 			<div>
@@ -94,6 +96,8 @@
 					</tr>
 					</tbody>
 				</table>
+				<button class="btn_stly" style="margin-top:25px" style="margin-bottom:100px" onclick="agregarHtml()">translate</button>
+
 			</div>
 
 
@@ -116,7 +120,25 @@
 		var contenido = document.getElementById("comment").value;
 		var contenedor = document.getElementById("resultado");
 		contenedor.innerHTML = contenido;
+
+		function sanitizar(){
+			
+		}
 	}
 </script>
+	<script>
+	function validar() {
+	var nombre = document.getElementById("nombre").value;
+	var email = document.getElementById("email").value;
+	var patron = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+
+	if (patron.test(nombre) || patron.test(email)) {
+	alert("No se permite enviar código JavaScript en el formulario.");
+	return false;
+	}
+
+	return true;
+	}
+	</script>
 </body>
 </html>
