@@ -5,6 +5,7 @@
 <link href="../../../css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="../../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../css/form.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!-- <script src="js/jquery.min.js"></script> -->
 <!-- Custom Theme files -->
@@ -22,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="menu">
 				<ul>
 					<li><a href="/"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
-					<li><a class="active" href="reviews"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+					<li><a class="active" href="/reviews"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
 					<li><a href="/showUsers"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
 					<li><a href="../../../../contact"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
 				</ul>
@@ -47,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<p>
 				<form id="form" action="/findByOccupancy" class="form">
 					<div class="formulario_grupo" id="grupo_number">
-						<label for="number" class="formulario_label"><h3>Set the threshold of tickets to see the occupancy of each movie</h3></label>
+						<label for="number" class="formulario_label"><h4 class="x_tit">Set the threshold of tickets to see the occupancy of each movie</h4></label>
 						<div class="formulario_grupo-input">
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" class="formulario_input" name="num" id="number" placeholder="2" min="1" max="100" required />
@@ -66,9 +67,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<p><form id="for" action="/usersByMovie" class="form">
 				<div class="formulario_grupo" id="grupo_name">
-					<label for="nameMovie" class="formulario_label">Set movie name to filter the users:</label>
+					<label for="nameMovie" class="formulario_label"><h4 class="x_tit">Set movie name to filter the users:</h4></label>
 					<div class="formulario_grupo-input">
-						<select class="formulario_input" name="idMovie" id="nameMovie">
+						<select class="formulario_input" style="margin-top:30px" name="idMovie" id="nameMovie">
 							<option value="select">[Select an option]</option>
 							{{#movies}}
 							<option value="{{id}}">{{name}} </option>
@@ -80,8 +81,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 
 				<div class="formulario_grupo formulario_grupo-btn-enviar">
-					<button type="submit" class="formulario_btn">SUBMIT THRESHOLD</button>
+					<button type="submit" class="formulario_btn" style="margin-top:20px">SUBMIT THRESHOLD</button>
 				</div>
+
 
 
 				<div class="clearfix"></div>

@@ -45,8 +45,8 @@
             fontSize: true,
 
             // uploads
-            imageUpload: true,
-            fileUpload: true,
+            //imageUpload: true,
+            //fileUpload: true,
 
             // media
             //videoEmbed: true,
@@ -65,8 +65,8 @@
             colors: [],
 
             // dropdowns
-            fileHTML: '',
-            imageHTML: '',
+            //fileHTML: '',
+            //imageHTML: '',
 
             // translations
             translations: {
@@ -89,7 +89,6 @@
                 'orange': 'Orange',
                 'yellow': 'Yellow',
                 'imageURL': 'Image URL',
-                'fileURL': 'File URL',
                 'linkText': 'Link text',
                 'url': 'URL',
                 'size': 'Size',
@@ -109,7 +108,7 @@
                 'pleaseEnterURL': 'Please enter an URL',
                 'videoURLnotSupported': 'Video URL not supported',
                 'pleaseSelectImage': 'Please select an image',
-                'pleaseSelectFile': 'Please select a file',
+
                 'bold': 'Bold',
                 'italic': 'Italic',
                 'underline': 'Underline',
@@ -125,7 +124,7 @@
                 'addFontSize': 'Font size',
                 'addImage': 'Add image',
                 'addVideo': 'Add video',
-                'addFile': 'Add file',
+
                 'addURL': 'Add URL',
                 'addTable': 'Add table',
                 'removeStyles': 'Remove styles',
@@ -244,13 +243,8 @@
                 class: "richText-btn",
                 "title": settings.translations.addFontSize,
                 html: '<span class="fa fa-text-height"></span>'
-            }), // font color
+            }); // font color
 
-            $btnFileUpload = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addFile,
-                html: '<span class="fa fa-file-text-o far fa-file-alt"></span>'
-            }); // file
 
 
 
@@ -267,7 +261,7 @@
             $formItem = $('<div />', {class: 'richText-form-item'}), // form item
             $formLabel = $('<label />'), // form label
             $formInput = $('<input />', {type: "text"}), //form input field
-            $formInputFile = $('<input />', {type: "file"}), // form file input field
+
             $formInputSelect = $('<select />'),
             $formButton = $('<button />', {text: settings.translations.add, class: "btn", type: "button"}); // button
 
@@ -316,130 +310,9 @@
         $backgroundColors.html(loadColors("hiliteColor"));
         $btnBackgroundColor.append($dropdownOuter.clone().append($backgroundColors.prepend($dropdownClose.clone())));
 
-        /* box dropdown for links */
-        var $linksDropdown = $dropdownBox.clone();
-        var $linksForm = $form.clone().attr("id", "richText-URL").attr("data-editor", editorID);
-        $linksForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.url).attr("for", "url"))
-                .append($formInput.clone().attr("id", "url"))
-        );
-        $linksForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.text).attr("for", "urlText"))
-                .append($formInput.clone().attr("id", "urlText"))
-        );
-        $linksForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.openIn).attr("for", "openIn"))
-                .append(
-                    $formInputSelect
-                        .clone().attr("id", "openIn")
-                        .append($("<option />", {value: '_self', text: settings.translations.sameTab}))
-                        .append($("<option />", {value: '_blank', text: settings.translations.newTab}))
-                )
-        );
-        $linksForm.append($formItem.clone().append($formButton.clone()));
-        $linksDropdown.append($linksForm);
-        $btnURLs.append($dropdownOuter.clone().append($linksDropdown.prepend($dropdownClose.clone())));
 
-        /* box dropdown for video embedding */
-        var $videoDropdown = $dropdownBox.clone();
-        var $videoForm = $form.clone().attr("id", "richText-Video").attr("data-editor", editorID);
-        $videoForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.url).attr("for", "videoURL"))
-                .append($formInput.clone().attr("id", "videoURL"))
-        );
-        $videoForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.size).attr("for", "size"))
-                .append(
-                    $formInputSelect
-                        .clone().attr("id", "size")
-                        .append($("<option />", {value: 'responsive', text: settings.translations.responsive}))
-                        .append($("<option />", {value: '640x360', text: '640x360'}))
-                        .append($("<option />", {value: '560x315', text: '560x315'}))
-                        .append($("<option />", {value: '480x270', text: '480x270'}))
-                        .append($("<option />", {value: '320x180', text: '320x180'}))
-                )
-        );
-        $videoForm.append($formItem.clone().append($formButton.clone()));
-        $videoDropdown.append($videoForm);
-        $btnVideoEmbed.append($dropdownOuter.clone().append($videoDropdown.prepend($dropdownClose.clone())));
 
-        /* box dropdown for image upload/image selection */
-        var $imageDropdown = $dropdownBox.clone();
-        var $imageForm = $form.clone().attr("id", "richText-Image").attr("data-editor", editorID);
 
-        if (settings.imageHTML
-            && ($(settings.imageHTML).find('#imageURL').length > 0 || $(settings.imageHTML).attr("id") === "imageURL")) {
-            // custom image form
-            $imageForm.html(settings.imageHTML);
-        } else {
-            // default image form
-            $imageForm.append(
-                $formItem.clone()
-                    .append($formLabel.clone().text(settings.translations.imageURL).attr("for", "imageURL"))
-                    .append($formInput.clone().attr("id", "imageURL"))
-            );
-            $imageForm.append(
-                $formItem.clone()
-                    .append($formLabel.clone().text(settings.translations.align).attr("for", "align"))
-                    .append(
-                        $formInputSelect
-                            .clone().attr("id", "align")
-                            .append($("<option />", {value: 'left', text: settings.translations.left}))
-                            .append($("<option />", {value: 'center', text: settings.translations.center}))
-                            .append($("<option />", {value: 'right', text: settings.translations.right}))
-                    )
-            );
-        }
-        $imageForm.append($formItem.clone().append($formButton.clone()));
-        $imageDropdown.append($imageForm);
-        $btnImageUpload.append($dropdownOuter.clone().append($imageDropdown.prepend($dropdownClose.clone())));
-
-        /* box dropdown for file upload/file selection */
-        var $fileDropdown = $dropdownBox.clone();
-        var $fileForm = $form.clone().attr("id", "richText-File").attr("data-editor", editorID);
-
-        if (settings.fileHTML
-            && ($(settings.fileHTML).find('#fileURL').length > 0 || $(settings.fileHTML).attr("id") === "fileURL")) {
-            // custom file form
-            $fileForm.html(settings.fileHTML);
-        } else {
-            // default file form
-            $fileForm.append(
-                $formItem.clone()
-                    .append($formLabel.clone().text(settings.translations.fileURL).attr("for", "fileURL"))
-                    .append($formInput.clone().attr("id", "fileURL"))
-            );
-            $fileForm.append(
-                $formItem.clone()
-                    .append($formLabel.clone().text(settings.translations.linkText).attr("for", "fileText"))
-                    .append($formInput.clone().attr("id", "fileText"))
-            );
-        }
-        $fileForm.append($formItem.clone().append($formButton.clone()));
-        $fileDropdown.append($fileForm);
-        $btnFileUpload.append($dropdownOuter.clone().append($fileDropdown.prepend($dropdownClose.clone())));
-
-        /* box dropdown for tables */
-        var $tableDropdown = $dropdownBox.clone();
-        var $tableForm = $form.clone().attr("id", "richText-Table").attr("data-editor", editorID);
-        $tableForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.rows).attr("for", "tableRows"))
-                .append($formInput.clone().attr("id", "tableRows").attr("type", "number"))
-        );
-        $tableForm.append(
-            $formItem.clone()
-                .append($formLabel.clone().text(settings.translations.columns).attr("for", "tableColumns"))
-                .append($formInput.clone().attr("id", "tableColumns").attr("type", "number"))
-        );
-        $tableForm.append($formItem.clone().append($formButton.clone()));
-        $tableDropdown.append($tableForm);
-        $btnTable.append($dropdownOuter.clone().append($tableDropdown.prepend($dropdownClose.clone())));
 
 
         /* initizalize editor */
@@ -579,35 +452,9 @@
                 $toolbarList.append($toolbarElement.clone().append($btnBackgroundColor));
             }
 
-            /* uploads */
-            if (settings.imageUpload === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnImageUpload));
-            }
-            if (settings.fileUpload === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnFileUpload));
-            }
 
-            /* media */
-            if (settings.videoEmbed === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnVideoEmbed));
-            }
 
-            /* urls */
-            if (settings.urls === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnURLs));
-            }
 
-            if (settings.table === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnTable));
-            }
-
-            /* code */
-            if (settings.removeStyles === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnRemoveStyles));
-            }
-            if (settings.code === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnCode));
-            }
 
             // set current textarea value to editor
             $editorView.html($inputElement.val());
@@ -1089,50 +936,8 @@
             }
         });
 
-        // adding file
-        settings.$editor.find('#richText-File button.btn').on('click', function (event) {
-            event.preventDefault();
-            var $button = $(this);
-            var $form = $button.parent('.richText-form-item').parent('.richText-form');
-            if ($form.attr("data-editor") === editorID) {
-                // only for currently selected editor
-                var url = $form.find('#fileURL').val();
-                var text = $form.find('#fileText').val();
 
-                // set default values
-                if (!text) {
-                    text = url;
-                }
-                if (!url) {
-                    // no url set
-                    $form.prepend($('<div />', {
-                        style: 'color:red;display:none;',
-                        class: 'form-item is-error',
-                        text: settings.translations.pleaseSelectFile
-                    }));
-                    $form.children('.form-item.is-error').slideDown();
-                    setTimeout(function () {
-                        $form.children('.form-item.is-error').slideUp(function () {
-                            $(this).remove();
-                        });
-                    }, 5000);
-                } else {
-                    // write html in editor
-                    var html = '';
-                    if (settings.useSingleQuotes === true) {
-                        html = "<a href='" + url + "' target='_blank'>" + text + "</a>";
-                    } else {
-                        html = '<a href="' + url + '" target="_blank">' + text + '</a>';
-                    }
-                    restoreSelection(editorID, true);
-                    pasteHTMLAtCaret(html);
-                    // reset input values
-                    $form.find('input#fileURL').val('');
-                    $form.find('input#fileText').val('');
-                    $('.richText-toolbar li.is-selected').removeClass("is-selected");
-                }
-            }
-        });
+
 
 
         // adding table
