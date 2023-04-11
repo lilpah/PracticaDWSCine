@@ -61,8 +61,8 @@ public class UserService {
     public Collection<Movie> getMovies(){
         return movieRepository.findAll();
     }
-    public Optional<User> getUser(long id){
-        return userRepository.findById(id);
+    public User getUser(long id){
+        return userRepository.findById(id).get();
     }
     public Collection<User> getUsers(){
         return userRepository.findAll();
