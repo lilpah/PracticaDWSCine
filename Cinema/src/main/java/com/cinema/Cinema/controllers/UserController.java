@@ -3,6 +3,7 @@ package com.cinema.Cinema.controllers;
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.UserService;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +51,8 @@ public class UserController {
 
     @GetMapping("/userAdded")
     public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
-        userService.addUser(new User(name,surname,pass,email));
-        model.addAttribute("user", name);
+        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(pass),StringEscapeUtils.escapeHtml4(email)));
+        model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
         return "userAdded";
     }
 
