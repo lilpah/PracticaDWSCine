@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.Collection;
 
 @Controller
@@ -78,9 +79,6 @@ public class UserController {
 
     @GetMapping("/contact/formComment")
     public String formComment(@RequestParam String comment, Model model){
-        if(!(comment.contains("<script>"))){
-            return "reviews";
-        }
         model.addAttribute("comment", comment);
         return "contact";
     }
