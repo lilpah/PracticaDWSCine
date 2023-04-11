@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>LA CARTELERA</title>
+
+    <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--webfont-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- header-section-starts -->
+<div class="full">
+    <div class="menu">
+        <ul>
+            <li><a href="/"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+            <!-- <li><a href="videos.html"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li> -->
+            <li><a href="../../html/reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+            <li><a href="/showUsers"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+            <li><a href="../../../../contact"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="error-content">
+            <div class="top-header span_top">
+                <div class="logo">
+                    <p>LA CARTELERA</p>
+                </div>
+                <div class="search v-search">
+                    <form>
+                        <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="error-404 text-center">
+                <h1>This movies has less than {{num}} tickets booked</h1>
+                <p>{{#movies}}
+                        <p>{{name}}</p>
+                    {{/movies}}</p>
+                <br>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
