@@ -85,6 +85,9 @@ public class TicketRESTController {
         //Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         //return userService.getUsers().get(id).allTickets().toString();
         if(userService.getUser(id).getTickets() != null) {
+            ticketService.getTicket(idTicket).setNameMovie(updateTicket.nameMovie);
+
+            //updateTicket.setNameMovie(ticketService.getTicket(idTicket).getNameMovie());
             userService.modifyTicket(id, updateTicket, idTicket);
             return new ResponseEntity<>(HttpStatus.OK);
         }
