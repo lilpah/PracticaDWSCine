@@ -52,7 +52,8 @@ public class User {
     private List<Ticket> tickets = new ArrayList<>();
      */
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name = "users_movies",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -62,7 +63,7 @@ public class User {
 
 
 
-    @OneToMany(cascade = CascadeType.DETACH,mappedBy = "users")
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "users")
     @JsonIgnore
     private List<Ticket> tickets = new ArrayList<>();
 

@@ -23,12 +23,10 @@ public class TicketRESTController {
 
     @GetMapping("/user/{id}/buyTicket")
     @ResponseStatus(HttpStatus.CREATED)
-    public String buyTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
+    public void buyTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
         Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
         userService.addTicket(id, tmp);
         //return userService.getUsers().get(id).allTickets().toString();
-        return "a";
-
     }
 
     @PostMapping("/user/{id}/buyTicket")

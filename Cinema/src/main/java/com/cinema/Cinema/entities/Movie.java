@@ -28,11 +28,12 @@ public class Movie {
     private long id = -1;
 
 
-    @OneToMany(cascade = CascadeType.DETACH,mappedBy = "movie")
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "movie")
     @JsonIgnore
     private List<Ticket> ticketsList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
 

@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class UserRESTController {
@@ -57,14 +60,14 @@ public class UserRESTController {
 
     @GetMapping("/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
-    public String showAllUsers(){
-        return userService.getUsers().toString();
+    public Collection<User> showAllUsers(){
+        return userService.getUsers();
     }
 
     @PostMapping("/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
-    public String showAllUsers2(){
-        return userService.getUsers().toString();
+    public Collection<User> showAllUsers2(){
+        return userService.getUsers();
     }
 
     //este metodo de updateUser (put) no funciona
