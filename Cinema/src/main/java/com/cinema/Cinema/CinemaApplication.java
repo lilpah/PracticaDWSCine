@@ -30,6 +30,7 @@ public class CinemaApplication {
 		UserRepository userRepository = configurableApplicationContext.getBean(UserRepository.class);
 
 
+		
 
 		/*movieRepository.save(new Movie("Creed","Action"));
 		movieRepository.save(new Movie("Scream VI","Terror"));
