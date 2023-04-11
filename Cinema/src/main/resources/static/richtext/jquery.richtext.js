@@ -49,17 +49,17 @@
             fileUpload: true,
 
             // media
-            videoEmbed: true,
+            //videoEmbed: true,
 
             // link
-            urls: true,
+            //urls: true,
 
             // tables
-            table: true,
+            //table: true,
 
             // code
-            removeStyles: true,
-            code: true,
+            //removeStyles: true,
+            //code: true,
 
             // colors
             colors: [],
@@ -142,7 +142,7 @@
             preview: false,
 
             // placeholder
-            placeholder: '',
+            placeholder: 'comment',
 
             // dev settings
             useSingleQuotes: false,
@@ -245,43 +245,14 @@
                 "title": settings.translations.addFontSize,
                 html: '<span class="fa fa-text-height"></span>'
             }), // font color
-            $btnImageUpload = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addImage,
-                html: '<span class="fa fa-image"></span>'
-            }), // image
-            $btnVideoEmbed = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addVideo,
-                html: '<span class="fa fa-video-camera fa-video"></span>'
-            }), // video
+
             $btnFileUpload = $('<a />', {
                 class: "richText-btn",
                 "title": settings.translations.addFile,
                 html: '<span class="fa fa-file-text-o far fa-file-alt"></span>'
-            }), // file
-            $btnURLs = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addURL,
-                html: '<span class="fa fa-link"></span>'
-            }), // urls/links
-            $btnTable = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addTable,
-                html: '<span class="fa fa-table"></span>'
-            }), // table
-            $btnRemoveStyles = $('<a />', {
-                class: "richText-btn",
-                "data-command": "removeFormat",
-                "title": settings.translations.removeStyles,
-                html: '<span class="fa fa-recycle"></span>'
-            }), // clean up styles
-            $btnCode = $('<a />', {
-                class: "richText-btn",
-                "data-command": "toggleCode",
-                "title": settings.translations.code,
-                html: '<span class="fa fa-code"></span>'
-            }); // code
+            }); // file
+
+
 
 
         /* prepare toolbar dropdowns */
