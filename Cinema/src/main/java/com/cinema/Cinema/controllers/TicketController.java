@@ -1,5 +1,6 @@
 package com.cinema.Cinema.controllers;
 
+import com.cinema.Cinema.entities.Movie;
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.repositories.MovieRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class TicketController {
@@ -95,6 +97,20 @@ public class TicketController {
         return "ticketBookedCorrectly";
     }
 
+    @GetMapping("reviews")
+    public String showMovies(Model model){
+        model.addAttribute("movies",movieService.getMovies());
+        return "reviews";
+    }
+
+
+    @GetMapping("usersByMovie")
+    public String findByOccupancy(Model model, @RequestParam long idMovie){
+        model.addAttribute("idMovie", movieService.getMovie(idMovie).getName());
+        List<User> users = ticketService.getUserByMovie(idMovie);
+        model.addAttribute("users", users);
+        return "usersByMovies";
+    }
 }
 
 

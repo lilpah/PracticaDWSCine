@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -41,6 +42,9 @@ public class TicketService {
 
 
 
+    public List<User> getUserByMovie(Long id){
+        return ticketRepository.findByMovieId(id);
+    }
 
 
     // Isma te recuerda que mires datables.net

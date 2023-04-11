@@ -1,4 +1,5 @@
 package com.cinema.Cinema.repositories;
+import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,5 +19,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     void deleteByUserIdAndMovieId(@Param("userId") Long userId, @Param("movieId") Long movieId);
 
      */
+
 
 }
