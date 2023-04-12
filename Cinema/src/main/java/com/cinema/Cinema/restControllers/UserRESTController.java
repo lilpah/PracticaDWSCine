@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -82,6 +84,14 @@ public class UserRESTController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 
+    }
+
+
+    //comentario
+    @GetMapping("/formComment")
+    public String formComment(@RequestParam String comment) {
+        String sanitized = comment.replaceAll("script", "xddd");
+        return sanitized;
     }
 
 
