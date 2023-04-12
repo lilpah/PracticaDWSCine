@@ -79,7 +79,7 @@ public class UserController {
 
     @GetMapping("/contact/formComment")
     public String formComment(@RequestParam String comment, Model model){
-        String sanitized = comment.replaceAll("script", "xddd");
+        String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
         model.addAttribute("comment", sanitized);
         return "contact";
     }
