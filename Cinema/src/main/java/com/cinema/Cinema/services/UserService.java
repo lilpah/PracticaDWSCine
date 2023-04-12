@@ -128,7 +128,7 @@ public class UserService {
         newticket.setNameMovie(movies.get(newticket.getIdMovie()).getName());
         */
         Ticket ticket = ticketRepository.findById(idTicket).get();
-        ticket.setNameMovie(newticket.getNameMovie());
+        //ticket.setNameMovie(newticket.getNameMovie());
         ticket.setNumSeat(newticket.getNumSeat());
         ticket.setMovieTime(newticket.getMovieTime());
         ticket.setMovieDate(newticket.getMovieDate());
