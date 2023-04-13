@@ -18,13 +18,13 @@ public class CommentController {
     public String formComment(@RequestParam String title,@RequestParam String comment, Model model){
         String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
         commentService.addComment(title,sanitized);
-        model.addAttribute("comment", commentService.getThreeComments());
+        model.addAttribute("comments", commentService.getThreeComments());
         return "contact";
     }
 
     @GetMapping("/contact")
     public String contact(Model model){
-        model.addAttribute("comment", commentService.getThreeComments());
+        model.addAttribute("comments", commentService.getThreeComments());
         return "contact";
     }
 
