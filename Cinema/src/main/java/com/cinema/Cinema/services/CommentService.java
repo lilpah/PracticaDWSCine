@@ -33,7 +33,7 @@ public class CommentService {
                 comments.add(aux.get(i));
             }
         }else{
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < 3; i++) {
                 comments.add(aux.get(i));
             }
         }
