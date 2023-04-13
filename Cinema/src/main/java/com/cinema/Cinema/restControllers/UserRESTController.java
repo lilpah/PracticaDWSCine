@@ -83,17 +83,7 @@ public class UserRESTController {
 
     }
 
-    //Rich Comment
-    @GetMapping("/formComment")
-    public String formComment(@RequestParam String comment) {
-        String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        return sanitized;
-    }
-    @PostMapping("/formComment")
-    public String formComment2(@RequestBody String comment) {
-        String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        return sanitized;
-    }
+
 
 
 }

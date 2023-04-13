@@ -77,18 +77,7 @@ public class UserController {
         return "userModified";
     }
 
-    @GetMapping("/contact/formComment")
-    public String formComment(@RequestParam String comment, Model model){
-        String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        model.addAttribute("comment", sanitized);
-        return "contact";
-    }
 
-    @GetMapping("/contact")
-    public String contact(Model model){
-        model.addAttribute("comment", "Is Empty");
-        return "contact";
-    }
 
 
 }
