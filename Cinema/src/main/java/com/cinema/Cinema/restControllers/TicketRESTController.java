@@ -1,5 +1,6 @@
 package com.cinema.Cinema.restControllers;
 
+import com.cinema.Cinema.entities.Movie;
 import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.services.MovieService;
@@ -33,11 +34,11 @@ public class TicketRESTController {
         //return userService.getUsers().get(id).allTickets().toString();
     }
 
-    @PostMapping("/user/{id}/buyTicket")
+    @PostMapping("/user/{id}/buyTicket/{idMovie}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void buyTicket2(@RequestBody Ticket ticket, @PathVariable long id) {
+    public void buyTicket2(@RequestBody Ticket ticket, @PathVariable long idMovie, @PathVariable long id) {
         //Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
-        userService.addTicket(id, ticket);
+        userService.addTicket2(id, ticket, idMovie);
         //return userService.getUser(id).getTickets().toString();
     }
 
@@ -95,6 +96,28 @@ public class TicketRESTController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/user/{id}/getMovie")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Movie getMovie(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
+        System.out.println(movieService.getMovie(idMovie));
+        Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
+        return tmp.getMovie();
+        //return userService.getUsers().get(id).allTickets().toString();
+    }
+
+
+    @GetMapping("/user/{id}/getTicket")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Ticket getTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
+        System.out.println(movieService.getMovie(idMovie));
+        Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
+        return tmp;
+        //return userService.getUsers().get(id).allTickets().toString();
+    }
+
+
 
 
 

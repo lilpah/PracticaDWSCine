@@ -122,6 +122,7 @@ public class UserService {
     }
 
 
+
     public void modifyTicket(long idUser, Ticket newticket, long idTicket){
        /* users.get(idUser).getTickets().put(ticket.getIdTicket(), newticket);
         movies.get(ticket.getIdMovie()).addTicket();
@@ -182,6 +183,32 @@ public class UserService {
         }
     }
 
+
+    public void addTicket2(long idUser, Ticket ticket, long idMovie) {
+        User user = userRepository.findById(idUser).get();
+        Movie movie = movieRepository.findById(idMovie).get();
+        long id = user.getLastTicketAdded().incrementAndGet();
+        ticket.setIdTicket(id);
+        ticket.setUsers(user);
+        ticket.setMovie(movie);
+        ticket.setNameMovie(movie.getName());
+        movie.addTicket();
+        movieRepository.save(movie);
+        ticketRepository.save(ticket);
+
+
+        boolean t = false;
+        for (Movie s :  user.getMovies()) {
+            if (s.getName().equals(movie.getName())){
+                t = true;
+            }
+        }
+        if(!t){
+            user.getMovies().add(movie);
+            userRepository.save(user);
+        }
+
+    }
 
     public void addMovie(Movie movie){
         long idMovie = lastMovie.incrementAndGet();

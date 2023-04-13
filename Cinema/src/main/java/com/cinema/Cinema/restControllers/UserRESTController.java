@@ -1,7 +1,6 @@
 package com.cinema.Cinema.restControllers;
 
 import com.cinema.Cinema.entities.User;
-import com.cinema.Cinema.services.MovieService;
 import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api")
