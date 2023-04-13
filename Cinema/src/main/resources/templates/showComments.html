@@ -43,9 +43,15 @@
             <div class="error-404 text-center">
                 <h1>Comment:</h1>
                 <br>
-                {{#comments}}
-                {{title}} : {{{content}}}
-                {{/comments}}
+                <div class="news-grid">
+                    {{#comments}}
+                    <div class="news-grid">
+                        <h4>{{title}}</h4>
+                        <p>{{{content}}}</p>
+                    </div>
+                    {{/comments}}
+                </div>
+
             </div>
             <div class="footer">
             </div>
