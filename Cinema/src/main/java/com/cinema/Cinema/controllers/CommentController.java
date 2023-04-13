@@ -17,14 +17,20 @@ public class CommentController {
     @GetMapping("/contact/formComment")
     public String formComment(@RequestParam String comment, Model model){
         String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        model.addAttribute("comment", sanitized);
         commentService.addComment(sanitized);
+        model.addAttribute("comment", commentService.getThreeComments());
         return "contact";
     }
 
     @GetMapping("/contact")
     public String contact(Model model){
-        model.addAttribute("comment", "Is Empty");
+        model.addAttribute("comment", commentService.getThreeComments());
         return "contact";
+    }
+
+    @GetMapping("/contact/showComments")
+    public String showComments(Model model){
+        model.addAttribute("comments",commentService.getComments());
+        return "showComments";
     }
 }
