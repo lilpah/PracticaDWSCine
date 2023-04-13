@@ -79,6 +79,8 @@
 				<p>THANK YOU FOR GIVING US YOUR OPINION<br></p>
 					<form action="/contact/formComment" class="formulario" id="formulario" onsubmit="return validar();">
 						<div class="col-md-6 contact-right" style="margin-top:25px">
+							<title>Title</title>
+							<input type="text" rows="1" placeholder="Title">
 							<textarea class="richcomment" id="comment" name="comment" rows="5" placeholder="Comment" th:field="*{comment}" autocomplete="off" >{{comment}}</textarea>
 						</div>
 						<button type="submit" class="btn_stly" style="margin-top:25px" style="margin-bottom:100px" onclick="agregarHtml()">SEND</button>
@@ -94,6 +96,9 @@
 					</tr>
 					</thead>
 					<tbody style="margin-top:15px">
+					<tr>
+						<td>Titulo</td>
+					</tr>
 					<tr>
 						<td id="resultado">{{{comment}}}</td>
 					</tr>
