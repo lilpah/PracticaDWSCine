@@ -18,10 +18,12 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private long id;
+    private String title;
     private String content;
 
-    public Comment(long id, String content){
+    public Comment(long id,String title, String content){
         this.id = id;
+        this.title = title;
         this.content = content;
     }
 }

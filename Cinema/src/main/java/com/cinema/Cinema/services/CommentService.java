@@ -19,19 +19,23 @@ public class CommentService {
     private AtomicLong idCount = new AtomicLong();
 
 
-    public void addComment(String string){
-        Comment comment = new Comment(idCount.incrementAndGet(),string);
+    public void addComment(String title,String content){
+        Comment comment = new Comment(idCount.incrementAndGet(),title,content);
         commentRepository.save(comment);
     }
 
     public Collection<Comment> getThreeComments(){
         List comments = new ArrayList<>();
         List aux = commentRepository.findAll();
-        for (int i = 0; i < 3; i++) {
-            if( aux.get(i) == null){
-                return comments;
+        int index = aux.size();
+        if(index < 3){
+            for (int i = 0; i < index; i++) {
+                comments.add(aux.get(i));
             }
-            comments.add(aux.get(i));
+        }else{
+            for (int i = 0; i < index; i++) {
+                comments.add(aux.get(i));
+            }
         }
         return comments;
     }

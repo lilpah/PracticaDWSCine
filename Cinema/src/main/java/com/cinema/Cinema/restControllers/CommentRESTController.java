@@ -12,9 +12,9 @@ public class CommentRESTController {
     CommentService commentService;
     //Rich Comment
     @GetMapping("/formComment")
-    public String formComment(@RequestParam String comment) {
+    public String formComment(@RequestParam String title,@RequestParam String comment) {
         String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        commentService.addComment(sanitized);
+        commentService.addComment(title,sanitized);
         return sanitized;
     }
     @PostMapping("/formComment")
