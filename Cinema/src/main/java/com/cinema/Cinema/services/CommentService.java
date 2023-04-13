@@ -16,11 +16,10 @@ public class CommentService {
     @Autowired
     CommentRepository commentRepository;
 
-    private AtomicLong idCount = new AtomicLong();
 
 
     public void addComment(String title,String content){
-        Comment comment = new Comment(idCount.incrementAndGet(),title,content);
+        Comment comment = new Comment(title,content);
         commentRepository.save(comment);
     }
 

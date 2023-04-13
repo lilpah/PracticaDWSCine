@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
@@ -20,9 +21,10 @@ public class Comment {
     private long id;
     private String title;
     private String content;
+    private AtomicLong idCount = new AtomicLong();
 
-    public Comment(long id,String title, String content){
-        this.id = id;
+    public Comment(String title, String content){
+        this.id = idCount.incrementAndGet();
         this.title = title;
         this.content = content;
     }
