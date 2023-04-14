@@ -16,8 +16,10 @@ public class CommentController {
 
     @GetMapping("/contact/formComment")
     public String formComment(@RequestParam String title,@RequestParam String comment, Model model){
-        String sanitized = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        commentService.addComment(title,sanitized);
+
+        String sanitizedComment = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
+        String sanitizedTitle = title.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
+        commentService.addComment(sanitizedTitle,sanitizedComment);
         model.addAttribute("comments", commentService.getThreeComments());
         return "contact";
     }

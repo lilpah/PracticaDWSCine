@@ -23,6 +23,10 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
+    public void addComment2(Comment comment){
+        commentRepository.save(comment);
+    }
+
     public Collection<Comment> getThreeComments(){
         List comments = new ArrayList<>();
         List aux = commentRepository.findAll();
@@ -41,5 +45,8 @@ public class CommentService {
 
     public Collection<Comment> getComments(){
         return commentRepository.findAll();
+    }
+    public Comment getComment(long idComment){
+        return commentRepository.findById(idComment).get();
     }
 }

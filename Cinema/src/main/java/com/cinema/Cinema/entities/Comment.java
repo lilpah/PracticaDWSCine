@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
     private String title;
     private String content;
