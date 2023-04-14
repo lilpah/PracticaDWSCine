@@ -82,6 +82,10 @@ public class UserService {
         users.remove(id);
          */
         lastId.decrementAndGet();
+
+        for (Ticket t : userRepository.findById(id).get().getTickets()) {
+            deleteTicket(id,t.getIdTicket());
+        }
         userRepository.deleteById(id);
     }
 

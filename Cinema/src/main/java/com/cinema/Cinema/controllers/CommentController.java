@@ -18,7 +18,7 @@ public class CommentController {
     public String formComment(@RequestParam String title,@RequestParam String comment, Model model){
 
         String sanitizedComment = comment.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
-        String sanitizedTitle = title.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ");
+        String sanitizedTitle = title.replaceAll("&lt;", " ").replaceAll("&gt", " ").replaceAll("img", " ").replaceAll("'", " ").replaceAll("\"", " ").replaceAll("script", " ").replaceAll("alert", " ").replaceAll(">", " ").replaceAll("<", " ");
         commentService.addComment(sanitizedTitle,sanitizedComment);
         model.addAttribute("comments", commentService.getThreeComments());
         return "contact";
