@@ -41,17 +41,13 @@
                 <div class="clearfix"></div>
             </div>
             <div class="error-404 text-center">
-                <h1>Comment:</h1>
+                <h1>Comments:</h1>
                 <br>
-                <div class="news-grid">
-                    {{#comments}}
-                    <div class="news-grid">
-                        <h4>{{title}}</h4>
-                        <p>{{{content}}}</p>
-                    </div>
-                    {{/comments}}
-                </div>
-
+                {{#comments}}
+                <h3><b>{{title}}</b></h3>
+                <p>{{{content}}}</p>
+                <br><br>
+                {{/comments}}
             </div>
             <div class="footer">
             </div>
