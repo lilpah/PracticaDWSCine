@@ -213,13 +213,14 @@ public class UserService {
         }
 
     }
-
-    public void addMovie(Movie movie){
-        long idMovie = lastMovie.incrementAndGet();
-        movie.setId(idMovie);
-        //movies.put(idMovie,movie);
-        movieRepository.save(movie);
+    
+    public void deleteMovie( Movie movie){
+        for (User u : userRepository.findAll()) {
+            eliminarPeliculaComprada(u.getId(), movie.getId());
+        }
     }
+
+    
 
 
 

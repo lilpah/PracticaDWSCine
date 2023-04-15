@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = -1;
+    private AtomicLong lastId = new AtomicLong();
 
 
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "movie")
@@ -40,6 +42,7 @@ public class Movie {
     public Movie(String name, String genre) {
         this.name = name;
         this.genre = genre;
+        this.id = lastId.incrementAndGet();
     }
 
     @Override
