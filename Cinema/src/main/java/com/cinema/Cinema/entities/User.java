@@ -33,6 +33,12 @@ public class User {
 
 
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<String> roles;
+
+
+
     /*
 
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -71,12 +77,13 @@ public class User {
 
 
 
-    public User(String name, String surname, String pass, String email) {
+    public User(String name, String surname, String pass, String email, String... roles) {
         this.name = name;
         this.surname = surname;
         this.pass = pass;
         this.email = email;
         this.lastTicketAdded = new AtomicLong();
+        this.roles= List.of(roles);
     }
 
 
@@ -110,4 +117,7 @@ public class User {
         return explorer;
     }
 
+    public String getEncodedPassword() {
+        return this.pass;
+    }
 }
