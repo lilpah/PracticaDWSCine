@@ -81,7 +81,7 @@ public class UserController {
     public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
         userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(passwordEncoder.encode(pass)),StringEscapeUtils.escapeHtml4(email),"USER"));
         model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
-        return "redirect: login";
+        return "redirect:login";
     }
 
 

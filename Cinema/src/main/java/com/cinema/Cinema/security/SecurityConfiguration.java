@@ -43,8 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/user").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/admin", "/showUsers").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/user", "/user/**").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin", "/admin/**").hasAnyRole("ADMIN");
 
 
         // Login form
