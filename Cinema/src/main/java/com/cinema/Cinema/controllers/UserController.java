@@ -27,17 +27,17 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-    @GetMapping("/showUsers")
+    @GetMapping("/admin/showUsers")
     public String showUser(Model model){
         model.addAttribute("users", userService.getUsers());
         return "usersTable";
     }
 
-    /*@GetMapping("/user/{id}")
+    @GetMapping("/admin/user/{id}")
     public String user(Model model, @PathVariable Long id){
         model.addAttribute("name", userService.getUser(id).getName());
-        return "userIndex";
-    }*/
+        return "ticketsUser";
+    }
 
     @GetMapping("/user")
     public String user(Model model, HttpServletRequest request){
@@ -58,13 +58,13 @@ public class UserController {
 
 
 
-    @GetMapping("/deleteUsers")
+    @GetMapping("/admin/deleteUsers")
     public String deleteUsers(Model model){
         model.addAttribute("users", userService.getUsers());
         return "deleteUsers";
     }
 
-    @GetMapping("/deleteUsers/{id}")
+    @GetMapping("/admin/deleteUsers/{id}")
     public String deleteUser(Model model, @PathVariable Long id){
         model.addAttribute("user", userService.getUser(id).getName());
         userService.deleteUser(id);
@@ -101,6 +101,18 @@ public class UserController {
         userService.modifyUser(id, new User(name, surname, pass, userService.getUser(id).getEmail()));
         model.addAttribute("name", userService.getUser(id).getName());
         return "userModified";
+    }
+
+    @GetMapping("/admin")
+    public String admin(Model model, HttpServletRequest request){
+
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        model.addAttribute("name", name);
+        return "admin";
     }
 
 
