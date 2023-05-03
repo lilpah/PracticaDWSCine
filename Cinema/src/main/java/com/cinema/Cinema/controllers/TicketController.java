@@ -35,28 +35,52 @@ public class TicketController {
 
 
 
-    @GetMapping("/user/{id}/deleteTicket")
-    public String deleteTicket(Model model, @PathVariable Long id){
-        User user = userService.getUser(id);
+    @GetMapping("/user/deleteTicket")
+    public String deleteTicket(Model model, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        long id = user.getId();
         model.addAttribute("tickets", user.getTickets());
         return "deleteATicket";
     }
 
-    @GetMapping("/user/{id}/deleteTicket/{idTicket}")
-    public String formDeleteTicket(@PathVariable long idTicket, @PathVariable long id){
+    @GetMapping("/user/deleteTicket/{idTicket}")
+    public String formDeleteTicket(Model model, @PathVariable long idTicket, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        long id = user.getId();
         userService.deleteTicket(id,idTicket);
-        return "ticketDeletedCorrectly";
+        return "redirect:/user/showTickets";
     }
 
-    @GetMapping("/user/{id}/modifyTicket")
-    public String modifyTickets(Model model, @PathVariable Long id){
-        User user = userService.getUser(id);
+    @GetMapping("/user/modifyTicket")
+    public String modifyTickets(Model model, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        long id = user.getId();
+
         Collection<Ticket> temp = user.getTickets();
         model.addAttribute("tickets",temp);
         return "modifyTickets";
     }
-    @GetMapping("/user/{id}/modifyTicket/{idTicket}")
-    public String modifyTicket(Model model,@PathVariable long idTicket,@PathVariable long id){
+    @GetMapping("/user/modifyTicket/{idTicket}")
+    public String modifyTicket(Model model,@PathVariable long idTicket,HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        long id = user.getId();
+
         model.addAttribute("numSeat",userService.getUser(id).getATicket(idTicket).getNumSeat());
         model.addAttribute("idMovie",userService.getUser(id).getATicket(idTicket).getMovie().getId());
         model.addAttribute("nameMovie",userService.getUser(id).getATicket(idTicket).getMovie().getName());
@@ -64,19 +88,20 @@ public class TicketController {
         model.addAttribute("movieDate",userService.getUser(id).getATicket(idTicket).getMovieDate());
         return "modifyATicket";
     }
-    @GetMapping("/user/{id}/formTicket/{idTicket}")
-    public String formTicket(@RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable Long id,@PathVariable Long idTicket){
-       /* userService.getUser(id).get().getATicket(idTicket).setNumSeat(numSeat);
-        userService.getUser(id).get().getATicket(idTicket).setMovieTime(movieTime);
-        userService.getUser(id).get().getATicket(idTicket).setMovieDate(movieDate);
+    @GetMapping("/user/formTicket/{idTicket}")
+    public String formTicket(Model model, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, HttpServletRequest request, @PathVariable Long idTicket){
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
 
-        */
+        long id = user.getId();
 
         Ticket newTicket = new Ticket(ticketService.getTicket(idTicket).getMovie(), numSeat, movieTime, movieDate);
         userService.modifyTicket(id, newTicket, idTicket);
 
 
-        return "ticketsModified";
+        return "redirect:/user/showTickets";
     }
 
     @GetMapping("/user/showTickets")
