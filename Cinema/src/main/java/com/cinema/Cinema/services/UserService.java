@@ -220,6 +220,10 @@ public class UserService {
         }
     }
 
+
+    public Optional<User> findByName(String username){
+        return userRepository.findByName(username);
+    }
     
 
 
