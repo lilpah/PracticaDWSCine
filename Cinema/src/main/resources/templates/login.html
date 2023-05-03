@@ -3,13 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <title>log in</title>
+
+  <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="../../css/add&modifyUser.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <link href="../../css/map.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
-<form action="/login" method="post">
-  <label>User Name:</label><input type="text" name="username" /><br />
-  <label>Password:</label><input type="password" name="password" /><br />
-  <input type="hidden" name="_csrf" value="{{token}}"/>
-  <input type="submit" value="Sign In" /><br />
-</form>
+<div class="full">
+  <div class="main">
+    <div class="error-content">
+      <div class="top-header span_top">
+        <div class="logo">
+          <p>LA CARTELERA</p>
+        </div>
+        <div class="search v-search">
+          <form>
+            <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+            <input type="submit" value="">
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="error-404 text-center">
+        <main>
+          <p><h3 class="head">LOG IN</h3>
+          <form action="/login" method="post" class="form">
+
+            <div class="formulario_grupo" >
+              <label  class="formulario_label">User Name</label>
+              <div>
+                <input type="text" class="formulario_input" name="username"/>
+              </div>
+
+              <label  class="formulario_label">Password</label>
+              <div>
+                <input type="password" class="formulario_input" name="password"/>
+              </div>
+            </div>
+            <br><br>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+            <input class="formulario_btn" type="submit" value="Sign In" /><br />
+
+
+
+
+          </form>
+          </p>
+        </main>
+
+        <p>
+          DON'T HAVE AN ACCOUNT?
+          <a class="sign" href="/addUsers">SIGN UP</a>
+        </p>
+      </div>
+      <div class="footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 </html>

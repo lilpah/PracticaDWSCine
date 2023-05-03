@@ -41,6 +41,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
+
             <div class="error-404 text-center">
                 <br><br>
 
@@ -52,8 +53,16 @@
                     <a class="b-home" href="/user/showTickets">SEE ALL MY TICKETS</a>
                     <a class="b-home" href="/user/modifyUser">MODIFY USER</a>
                 </p>
+                <br><br>
 
 
+                <p>
+                <div>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                        <input class="formulario_btn" type="submit" value="Sign Out" />
+                    </form>
+                </div>
                 </p>
             </div>
             <div class="footer">

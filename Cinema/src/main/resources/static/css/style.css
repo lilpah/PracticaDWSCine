@@ -316,6 +316,20 @@ i.contact1 {
 .search{
 	float:right;
 }
+
+.login{
+	float:right;
+}
+
+.sign{
+	background:#272e34;
+	padding:0.7em 2.5em;
+	display:inline-block;
+	color:#1B242F;
+	text-decoration:none;
+	margin-top:1em;
+}
+
 /*--start-search--*/
 .search {
 	position: relative;

@@ -52,10 +52,6 @@ public class WebController {
         return "private";
     }
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
 
 
 }
