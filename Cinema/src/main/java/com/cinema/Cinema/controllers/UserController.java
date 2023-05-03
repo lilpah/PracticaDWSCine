@@ -5,26 +5,19 @@ import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.UserService;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
     UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/showUsers")
@@ -58,90 +51,11 @@ public class UserController {
     }
 
     @GetMapping("/userAdded")
-    public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email, @RequestParam String... roles){
-        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname), passwordEncoder.encode(StringEscapeUtils.escapeHtml4(pass)),StringEscapeUtils.escapeHtml4(email), roles));
+    public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
+        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(pass),StringEscapeUtils.escapeHtml4(email)));
         model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
         return "userAdded";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* @PostMapping("/userAdded")
-    public String formUser(Model model, User user, HttpServletRequest request){
-        if(userService.findByName(user.getName()).isEmpty()){
-            List<String> role= new ArrayList<>();
-            role.add("USER");
-            user.setRoles(role);
-            userService.addUser(user);
-            //return userCustomization(model,request,"userAdded");
-            return "userAdded";
-
-        }
-        else{
-            //return userCustomization(model,request,"alreadyExistingUser");
-            return "userAdded";
-        }
-    }
-
-
-    private String userCustomization(Model model, HttpServletRequest request, String page){
-        boolean roleUser=false;
-        boolean roleAdmin=false;
-        boolean roleRestaurant=false;
-        boolean viewer=true;
-        if(SecurityContextHolder.getContext().getAuthentication()!=null){
-            String username=SecurityContextHolder.getContext().getAuthentication().getName();
-            model.addAttribute("username",username);
-            if(request.isUserInRole("ROLE_USER")){
-                roleUser=true;
-                viewer=false;
-            }
-            else if(request.isUserInRole("ROLE_ADMIN")){
-                roleAdmin=true;
-                viewer=false;
-            }
-            else if(request.isUserInRole("ROLE_RESTAURANT")){
-                roleRestaurant=true;
-                viewer=false;
-            }
-        }
-        model.addAttribute("roleUser",roleUser);
-        model.addAttribute("roleAdmin",roleAdmin);
-        model.addAttribute("roleRestaurant",roleRestaurant);
-        model.addAttribute("viewer",viewer);
-        return page;
-    }
-
-   */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @GetMapping("/user/{id}/modifyUser")
     public String modifyUser(Model model, @PathVariable Long id){
