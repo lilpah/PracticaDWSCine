@@ -5,6 +5,7 @@ import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.UserService;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,8 @@ public class UserController {
     UserService userService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/showUsers")
@@ -75,9 +78,9 @@ public class UserController {
 
     @GetMapping("/userAdded")
     public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
-        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(pass),StringEscapeUtils.escapeHtml4(email)));
+        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(passwordEncoder.encode(pass)),StringEscapeUtils.escapeHtml4(email),"USER"));
         model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
-        return "userAdded";
+        return "redirect:login";
     }
 
     @GetMapping("/user/{id}/modifyUser")
