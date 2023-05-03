@@ -81,7 +81,7 @@ public class TicketController {
         return "ticketsUser";
     }
 
-    @GetMapping("/user/{id}/buyTickets")
+    @GetMapping("/user/buyTickets")
     public String buyTickets(Model model, @PathVariable Long id){
         User user = userService.getUser(id);
         model.addAttribute("movies", movieService.getMovies());

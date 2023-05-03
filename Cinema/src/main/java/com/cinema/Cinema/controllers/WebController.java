@@ -45,11 +45,15 @@ public class WebController {
 
         model.addAttribute("username", user.getName());
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
-
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
         model.addAttribute("token", token.getToken());
 
-        return "private";
+        if(request.isUserInRole("ADMIN")){
+            return "redirect:admin";
+        }else{
+            return "redirect:user";
+
+        }
     }
 
 
