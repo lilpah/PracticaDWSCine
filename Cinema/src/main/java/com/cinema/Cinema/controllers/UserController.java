@@ -5,6 +5,7 @@ import com.cinema.Cinema.repositories.UserRepository;
 import com.cinema.Cinema.services.UserService;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 
 @Controller
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping("/showUsers")
@@ -26,11 +30,30 @@ public class UserController {
         return "usersTable";
     }
 
-    @GetMapping("/user/{id}")
+    /*@GetMapping("/user/{id}")
     public String user(Model model, @PathVariable Long id){
         model.addAttribute("name", userService.getUser(id).getName());
         return "userIndex";
+    }*/
+
+    @GetMapping("/user")
+    public String user(Model model, HttpServletRequest request){
+
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        model.addAttribute("username", user.getName());
+        model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+
+
+        model.addAttribute("name", name);
+        return "userIndex";
     }
+
+
 
     @GetMapping("/deleteUsers")
     public String deleteUsers(Model model){
