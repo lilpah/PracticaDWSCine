@@ -168,11 +168,34 @@ public class UserController {
             userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(passwordEncoder.encode(pass)),StringEscapeUtils.escapeHtml4(email),"USER","ADMIN"));
             model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
             return "redirect:/login";
-        }   
+        }
         return "addUserAlreadyExisting";
     }
 
+    @GetMapping("/user/deleteUser")
+    public String deleteUser(Model model, HttpServletRequest request){
 
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+
+        model.addAttribute("name", name);
+        return "deleteUser";
+    }
+
+    @GetMapping("/user/userDeleted")
+    public String userDeleted(Model model, HttpServletRequest request){
+
+        String name = request.getUserPrincipal().getName();
+        User user = userRepository.findByName(name).orElseThrow();
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
+        
+        userService.deleteUser(user.getId());
+
+        return "redirect:/login";
+    }
 }
 
 
