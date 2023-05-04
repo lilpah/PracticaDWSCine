@@ -39,6 +39,9 @@ public class WebController {
     @GetMapping("/private")
     public String privatePage(Model model, HttpServletRequest request) {
 
+        if(request.getUserPrincipal() == null){
+            return "redirect:/login";
+        }
         String name = request.getUserPrincipal().getName();
 
         User user = userRepository.findByName(name).orElseThrow();
