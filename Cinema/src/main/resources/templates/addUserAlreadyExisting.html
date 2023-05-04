@@ -36,7 +36,7 @@
           <p>LA CARTELERA</p>
         </div>
         <div class="search v-search">
-          <form>
+          <form >
             <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
             <input type="submit" value="">
           </form>
@@ -45,13 +45,13 @@
       </div>
       <div class="error-404 text-center">
         <main>
-          <p><h3 class="head">MODIFY AN USER:</h3>
-          <form action="/user/userModified" class="formulario" id="formulario">
+          <p><h3 class="head">ADD AN USER:</h3>
+          <form action="/userAdded" class="formulario" id="formulario">
 
             <div class="formulario_grupo" >
               <label  class="formulario_label">Name</label>
               <div class="formulario_grupo-input">
-                <input type="text" class="formulario_input" name="name" placeholder="{{name}}" value="{{name}}" readonly/>
+                <input type="text" class="formulario_input" id="name" name="name" placeholder="Name User"  pattern="[a-zA-Z]+" maxlength="20" required/>
                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
               </div>
             </div>
@@ -59,42 +59,32 @@
             <div class="formulario_grupo" >
               <label  class="formulario_label">Surname</label>
               <div class="formulario_grupo-input">
-                <input type="text" class="formulario_input" name="surname" placeholder="{{surname}}" value="{{surname}}" required/>
+                <input type="text" class="formulario_input" id="surname" name="surname" placeholder="Surname user" pattern="[a-zA-Z]+" maxlength="30" required/>
                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
               </div>
             </div>
-
-            <!--<div class="formulario_grupo" >
-              <label class="formulario_label">Password</label>
-              <div class="formulario_grupo-input">
-                <input type="password" class="formulario_input" name="pass"  placeholder="{{pass}}" value="{{pass}}" required/>
-                <i class="formulario_validacion-estado fas fa-times-circle"></i>
-              </div>
-            </div>-->
 
             <div class="formulario_grupo" >
 
               <label class="formulario_label">Password</label>
               <div class="formulario_grupo-input">
-                <input type="password" class="formulario_input" name="pass" id="pass" placeholder="{{pass}}" value="{{pass}}" required/>
+                <input type="password" class="formulario_input" name="pass" id="pass" placeholder="Password" required/>
                 <button type="button" class="butt_klk" onclick="mostrarContraseña()">Show password</button>
               </div>
 
             </div>
 
-
-
-
             <div class="formulario_grupo" >
               <label  class="formulario_label">Email</label>
               <div class="formulario_grupo-input">
-                <input type="text" class="formulario_input" name="email" placeholder="{{email}}" readonly/>
+                <input type="text" class="formulario_input" id="email" name="email" placeholder="Email User" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+" maxlength="50" required/>
                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
               </div>
             </div>
 
             <div class="formulario_grupo formulario_grupo-btn-enviar">
-              <button type="submit" class="formulario_btn">MODIFY USER</button>
+                               <p>NAME ALREADY USED</p><br><br>
+              <button type="submit" class="formulario_btn">ADD USER</button>
             </div>
 
 

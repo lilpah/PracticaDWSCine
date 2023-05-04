@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,10 +80,14 @@ public class UserController {
     }
 
     @GetMapping("/userAdded")
-    public String formUser(Model model,  @RequestParam String pass, @RequestParam String name, @RequestParam String surname,@RequestParam String email){
-        userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(passwordEncoder.encode(pass)),StringEscapeUtils.escapeHtml4(email),"USER"));
-        model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
-        return "redirect:login";
+    public String formUser(Model model, @RequestParam String pass, @RequestParam String name, @RequestParam String surname, @RequestParam String email){
+        if(userService.findByName(name).isEmpty()){
+            userService.addUser(new User(StringEscapeUtils.escapeHtml4(name),StringEscapeUtils.escapeHtml4(surname),StringEscapeUtils.escapeHtml4(passwordEncoder.encode(pass)),StringEscapeUtils.escapeHtml4(email),"USER"));
+            model.addAttribute("user", StringEscapeUtils.escapeHtml4(name));
+            return "redirect:login";
+        }
+        return "addUserAlreadyExisting";
+
     }
 
 
