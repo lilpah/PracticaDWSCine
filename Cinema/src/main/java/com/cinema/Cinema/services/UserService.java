@@ -74,6 +74,7 @@ public class UserService {
          */
         long id = lastId.incrementAndGet();
         user.setId(id);
+
         userRepository.save(user);
     }
 
@@ -224,7 +225,7 @@ public class UserService {
     public Optional<User> findByName(String name){
         return userRepository.findByName(name);
     }
-    
+
 
 
 
