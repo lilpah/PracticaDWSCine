@@ -44,4 +44,11 @@ public class MovieService {
     public void addMovie(Movie movie){
         movieRepository.save(movie);
     }
+
+    public void modifyMovie(long id,String genre,int numSeats){
+        Movie movie = movieRepository.findById(id).get();
+        movie.setGenre(genre);
+        movie.setNumSeats(numSeats);
+        movieRepository.save(movie);
+    }
 }

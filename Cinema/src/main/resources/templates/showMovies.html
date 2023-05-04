@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LA CARTELERA</title>
+  <link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <link href="../css/form.css" rel='stylesheet' type='text/css' />
+  <!-- Custom Theme files -->
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <!-- Custom Theme files -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <!-- Custom Theme files -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--webfont-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+<style>
+  .content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 2em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .content-table thead tr{
+    background-color: #99FFFF;;
+    color: #0b0b0b;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .content-table th,
+  .content-table td {
+    padding: 10px 30px;
+  }
+
+  .content-table tbody tr{
+    border-bottom: 1px solid #1B242F;
+  }
+
+  .content-table tbody tr:nth-of-type(even){
+    background-color: #F3F3F3;
+  }
+
+  .content-table tbody tr:last-of-type{
+    border-bottom: 4px solid #99FFFF;;
+  }
+
+  .content-table tbody tr.active-row{
+    font-weight: bold;
+    color: #245269;
+  }
+</style>
+<body>
+<div class="full">
+  <div class="menu">
+    <ul>
+      <li><a href="/"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+      <!-- <li><a href="videos.html"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li> -->
+      <li><a href="../../../../reviews"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+      <li><a href="/user"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+      <li><a href="../../../../contact"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+    </ul>
+  </div>
+  <div class="main">
+    <div class="error-content">
+      <div class="top-header span_top">
+        <div class="logo">
+          <p>LA CARTELERA</p>
+        </div>
+        <div class="search v-search">
+          <form>
+            <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+            <input type="submit" value="">
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="error-404 text-center">
+        <main>
+          <h3 class="head">Movies</h3>
+          <table class="content-table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Genre</th>
+              <th>Num Seats</th>
+              <th>Num Tickets</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {{#movies}}<tr class="active-row">
+              <td>{{name}}</td>
+              <td>{{genre}}</td>
+              <td>{{numSeats}}</td>
+              <td>{{numTickets}}</td>
+            </tr>{{/movies}}
+            </tbody>
+          </table>
+          <a class="b-home" href="/admin/deleteMovies">DELETE MOVIE</a>
+          <a class="b-home" href="/admin/addMovie">ADD MOVIE</a>
+          <a class="b-home" href="/admin/modifyMovies">MODIFY MOVIE</a>
+
+        </main>
+      </div>
+      <div class="footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
