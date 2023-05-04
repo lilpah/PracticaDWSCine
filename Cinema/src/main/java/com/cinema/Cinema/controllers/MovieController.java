@@ -70,4 +70,19 @@ public class MovieController {
         return "redirect:/admin/showMovies";
     }
 
+
+    @GetMapping("/admin/addMovie")
+    public String addMovies(Model model){
+        model.addAttribute("movies",movieService.getMovies());
+        return "addMovie";
+    }
+
+
+    @GetMapping("/admin/formAddMovie")
+    public String formAdd(@RequestParam String name, @RequestParam String genre){
+
+        movieService.addMovie(new Movie(name,genre));
+        return "redirect:/admin/showMovies";
+    }
+
 }

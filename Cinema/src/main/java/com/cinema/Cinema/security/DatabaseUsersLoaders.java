@@ -19,6 +19,6 @@ public class DatabaseUsersLoaders {
     private void initDatabase() {
         userRepository.save(new User("normalUser", "normalSurname",  passwordEncoder.encode("user"), "normalUser@lacartelera.com", "USER"));
         userRepository.save(new User("admin", "adminSurname",  passwordEncoder.encode("admin"), "admin@lacartelera.com", "ADMIN", "USER"));
-    }
-    */
+    }*/
+
 }
