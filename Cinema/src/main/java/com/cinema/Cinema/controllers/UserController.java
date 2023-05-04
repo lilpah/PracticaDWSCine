@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/admin/user/{id}")
     public String user(Model model, @PathVariable Long id){
         model.addAttribute("name", userService.getUser(id).getName());
-        return "ticketsUser";
+        return "ticketsAdmin";
     }
 
     @GetMapping("/user")
