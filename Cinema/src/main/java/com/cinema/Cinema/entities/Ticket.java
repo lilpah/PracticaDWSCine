@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name="tickets")
 public class Ticket {
     // private long idMovie;
+
+    public interface TicketView {}
     private int numSeat;
     public String nameMovie;
     private String movieTime;

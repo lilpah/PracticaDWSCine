@@ -29,15 +29,42 @@ public class RESTSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.antMatcher("/api/**");
 
         http
+                //users
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/user").hasAnyRole("USER")
-                .antMatchers(HttpMethod.POST,"/user").hasAnyRole("USER")
-                .antMatchers(HttpMethod.GET,"/register").hasAnyRole("USER")
-                .antMatchers(HttpMethod.POST,"/register").hasAnyRole("USER")
-                .antMatchers(HttpMethod.PUT,"/updateUser").hasAnyRole("USER")
-                .antMatchers(HttpMethod.GET,"/admin/showAllUsers").hasAnyRole("ADMIN")
-                .antMatchers(HttpMethod.POST,"/admin/showAllUsers").hasAnyRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/admin/deleteUser/{id}").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/user").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/user").hasAnyRole("USER", "ADMIN")
+               // .antMatchers(HttpMethod.GET,"/api/register").hasAnyRole("USER", "ADMIN")
+               // .antMatchers(HttpMethod.POST,"/api/register").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/updateUser").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/deleteMyUser").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/admin/showAllUsers").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/admin/showAllUsers").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/admin/deleteUser/{id}").hasAnyRole("ADMIN")
+
+
+                //movies
+
+                .antMatchers(HttpMethod.GET,"/api/admin/showMovies").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/admin/showMovies").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/admin/deleteMovie/{id}").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/admin/updateMovie/{id}").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/admin/addMovie").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/admin/addMovie").hasAnyRole("ADMIN")
+
+
+
+                //tickets
+                .antMatchers(HttpMethod.GET,"/api/user/buyTicket").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/user/buyTicket").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/user/showTickets").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/user/showTickets").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/user/deleteTicket/{idTicket}").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/user/updateTicket/{idTicket}").hasAnyRole("USER", "ADMIN")
+
+
+
+
+
 
 
 

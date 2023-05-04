@@ -2,6 +2,7 @@ package com.cinema.Cinema.restControllers;
 
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.services.UserService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class UserRESTController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-   @GetMapping("/user")
+    @JsonView(User.UserView.class)
+    @GetMapping("/user")
     public ResponseEntity<User> getUser(HttpServletRequest request){
        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
            String name = request.getUserPrincipal().getName();
@@ -38,6 +40,7 @@ public class UserRESTController {
 
     }
 
+    @JsonView(User.UserView.class)
     @PostMapping("/user")
     public ResponseEntity<User> getUser2(HttpServletRequest request){
         if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
@@ -50,13 +53,27 @@ public class UserRESTController {
         }
     }
 
-    @DeleteMapping("/admin/deleteUser/{id}")
+    @DeleteMapping("/admin/deleteAnyUser/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
         if(userService.getUser(id).getId() == -1){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             userService.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+
+    @DeleteMapping("/deleteMyUser")
+    public ResponseEntity<User> deleteMyUser(HttpServletRequest request) {
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+            String name = request.getUserPrincipal().getName();
+            User user = userService.findByName(name).orElseThrow();
+            userService.deleteUser(user.getId());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -87,12 +104,15 @@ public class UserRESTController {
     }
      */
 
+    @JsonView(User.UserViewAdmin.class)
     @GetMapping("/admin/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
     public Collection<User> showAllUsers(){
         return userService.getUsers();
     }
 
+
+    @JsonView(User.UserViewAdmin.class)
     @PostMapping("/admin/showAllUsers")
     @ResponseStatus(HttpStatus.OK)
     public Collection<User> showAllUsers2(){

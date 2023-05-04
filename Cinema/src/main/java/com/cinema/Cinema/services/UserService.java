@@ -94,7 +94,7 @@ public class UserService {
         /*users.put(id, user);
          */
         User existingUser = userRepository.findById(id).get();
-        existingUser.setName(user.getName());
+        //existingUser.setName(user.getName());
         existingUser.setSurname(user.getSurname());
         existingUser.setPass(user.getPass());
         userRepository.save(existingUser);

@@ -3,6 +3,7 @@ package com.cinema.Cinema.entities;
 import com.cinema.Cinema.entities.Ticket;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,22 @@ import java.util.concurrent.atomic.AtomicLong;
 @Table(name="users")
 public class User {
 
+    public interface UserView{}
+    public interface UserViewAdmin{}
+
+
+
+    @JsonView({UserView.class, UserViewAdmin.class})
     private String name;
+
+    @JsonView({UserView.class, UserViewAdmin.class})
     private String surname;
     private String pass;
+
+    @JsonView({UserView.class, UserViewAdmin.class})
     private String email;
+
+    @JsonView({UserViewAdmin.class, Ticket.TicketView.class})
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = -1;

@@ -9,9 +9,11 @@ import com.cinema.Cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 
 @RestController
@@ -26,53 +28,64 @@ public class TicketRESTController {
     @Autowired
     TicketService ticketService;
 
-    @GetMapping("/user/{id}/buyTicket")
+    @GetMapping("/user/buyTicket")
     @ResponseStatus(HttpStatus.CREATED)
-    public void buyTicket(Model model, @RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, @PathVariable long id) {
+    public void buyTicket(@RequestParam long idMovie, @RequestParam int numSeat, @RequestParam String movieTime, @RequestParam String movieDate, HttpServletRequest request) {
         Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
-        userService.addTicket(id, tmp);
+        String name = request.getUserPrincipal().getName();
+        User user = userService.findByName(name).orElseThrow();
+        userService.addTicket(user.getId(), tmp);
         //return userService.getUsers().get(id).allTickets().toString();
     }
 
-    @PostMapping("/user/{id}/buyTicket/{idMovie}")
+    // Este no funciona
+    @PostMapping("/user/buyTicket")
     @ResponseStatus(HttpStatus.CREATED)
-    public void buyTicket2(@RequestBody Ticket ticket, @PathVariable long idMovie, @PathVariable long id) {
+    public void buyTicket2(@RequestBody Ticket ticket, HttpServletRequest request) {
         //Ticket tmp = new Ticket(movieService.getMovie(idMovie), numSeat, movieTime, movieDate);
-        userService.addTicket2(id, ticket, idMovie);
+        String name = request.getUserPrincipal().getName();
+        User user = userService.findByName(name).orElseThrow();
+        userService.addTicket(user.getId(), ticket);
         //return userService.getUser(id).getTickets().toString();
     }
 
-    @PostMapping("/user/{id}/showTickets")
-    public ResponseEntity<Collection<Ticket>> showTickets2(Model model, @PathVariable long id) {
-        if(userService.getUser(id).getTickets() == null) {
+
+
+    @PostMapping("/user/showTickets")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Collection<Ticket>> showTickets2(HttpServletRequest request) {
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+            String name = request.getUserPrincipal().getName();
+            User user = userService.findByName(name).orElseThrow();
+            return new ResponseEntity<>(userService.getUser(user.getId()).getTickets(), HttpStatus.OK);
+        }
+        else{
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        User user = userService.getUser(id);
-        Collection<Ticket> temp = user.getTickets();
-        model.addAttribute("tickets", temp);
-        return new ResponseEntity<>(user.getTickets(), HttpStatus.OK);
-
     }
 
 
-    @GetMapping("/user/{id}/showTickets")
-    public ResponseEntity<Collection<Ticket>> showTickets(Model model, @PathVariable long id) {
-        if(userService.getUser(id).getTickets() == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/user/showTickets")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Collection<Ticket>> showTickets(HttpServletRequest request) {
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+            String name = request.getUserPrincipal().getName();
+            User user = userService.findByName(name).orElseThrow();
+            return new ResponseEntity<>(userService.getUser(user.getId()).getTickets(), HttpStatus.OK);
         }
-        User user = userService.getUser(id);
-        Collection<Ticket> temp = user.getTickets();
-        model.addAttribute("tickets", temp);
-        return new ResponseEntity<>(user.getTickets(), HttpStatus.OK);
-
+        else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
 
-   @DeleteMapping("/user/{id}/deleteTicket/{idTicket}")
+   @DeleteMapping("/user/deleteTicket/{idTicket}")
    @ResponseStatus(HttpStatus.OK)
-   public ResponseEntity<User> deleteTicket(@PathVariable long id, @PathVariable long idTicket) {
-        if(userService.getUser(id).getTickets() != null) {
-            userService.deleteTicket(id,idTicket);
+   public ResponseEntity<User> deleteTicket(HttpServletRequest request, @PathVariable long idTicket) {
+       String name = request.getUserPrincipal().getName();
+       User user = userService.findByName(name).orElseThrow();
+        if(userService.getUser(user.getId()).getATicket(idTicket) != null) {
+            userService.deleteTicket(user.getId(), idTicket);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else{
@@ -80,16 +93,19 @@ public class TicketRESTController {
         }
     }
 
-    @PutMapping("/user/{id}/updateTicket/{idTicket}")
+    @PutMapping("/user/updateTicket/{idTicket}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Ticket> setUpdateTicket(Model model, @PathVariable long id, @PathVariable long idTicket, @RequestBody Ticket updateTicket) {
+    public ResponseEntity<Ticket> setUpdateTicket(HttpServletRequest request, @PathVariable long idTicket, @RequestBody Ticket updateTicket) {
         //Ticket tmp = new Ticket(idMovie, numSeat, movieTime, movieDate);
         //return userService.getUsers().get(id).allTickets().toString();
-        if(userService.getUser(id).getTickets() != null) {
-            ticketService.getTicket(idTicket).setNameMovie(updateTicket.nameMovie);
+
+        String name = request.getUserPrincipal().getName();
+        User user = userService.findByName(name).orElseThrow();
+        if(userService.getUser(user.getId()).getATicket(idTicket) != null) {
+            //ticketService.getTicket(idTicket).setNameMovie(updateTicket.nameMovie);
 
             //updateTicket.setNameMovie(ticketService.getTicket(idTicket).getNameMovie());
-            userService.modifyTicket(id, updateTicket, idTicket);
+            userService.modifyTicket(user.getId(), updateTicket, idTicket);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else{
