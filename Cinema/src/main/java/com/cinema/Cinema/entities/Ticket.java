@@ -27,7 +27,7 @@ public class Ticket {
 
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     private Movie movie;
 
 
