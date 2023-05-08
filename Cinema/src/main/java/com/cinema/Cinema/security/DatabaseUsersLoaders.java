@@ -15,12 +15,12 @@ public class DatabaseUsersLoaders {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-   /*@PostConstruct
+   @PostConstruct
     private void initDatabase() {
-        userRepository.save(new User("user", "normalSurname",  passwordEncoder.encode("user"), "normalUser@lacartelera.com", "USER"));
-        userRepository.save(new User("admin", "adminSurname",  passwordEncoder.encode("admin"), "admin@lacartelera.com", "ADMIN", "USER"));
+        //userRepository.save(new User("user", "normalSurname",  passwordEncoder.encode("user"), "normalUser@lacartelera.com", "USER"));
+        userRepository.save(new User("admin1", "adminSurname",  passwordEncoder.encode("admin"), "admin@lacartelera.com", "ADMIN", "USER"));
     }
 
-    */
+
 
 }

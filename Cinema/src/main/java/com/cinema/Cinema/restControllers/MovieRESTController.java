@@ -1,6 +1,7 @@
 package com.cinema.Cinema.restControllers;
 
 import com.cinema.Cinema.entities.Movie;
+import com.cinema.Cinema.entities.Ticket;
 import com.cinema.Cinema.entities.User;
 import com.cinema.Cinema.repositories.MovieRepository;
 import com.cinema.Cinema.repositories.UserRepository;
@@ -81,14 +82,13 @@ public class MovieRESTController {
     }
 
 
-// Este no vaa
     @PutMapping("/admin/updateMovie/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable long id, @RequestBody String genre, @RequestBody int numSeats){
+    public ResponseEntity<Movie> updateMovie(@PathVariable long id, @RequestBody Movie updateMovie){
         if(movieService.getMovie(id) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else{
-            movieService.modifyMovie(id,genre,numSeats);
+            movieService.modifyMovie(id, updateMovie.getGenre(), updateMovie.getNumSeats());
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
